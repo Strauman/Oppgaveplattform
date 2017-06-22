@@ -1,14 +1,29 @@
 \documentclass{article}
-\input{\reldir/lib/packages}
-\input{\reldir/lib/codestyle}
+\def\platformdir{.}
+\input{\platformdir/packages}
+\input{\platformdir/codestyle}
 \begin{document}
-\input{\reldir/lib/lst/latex}
+\input{\platformdir/lst/latex}
 \lstset{language=[LaTeX]TeX}
 \noindent Dette er et latex-oppsett designet for å lage oppgaver med løsningsforslag. Dette er implementert med PDFLaTeX via TexLive/Latexmk i Atom. Anbefales å bruke Atom eller Sublime Text for å bygge settet. Et IDE, som for eksempel TeXStudio, kan by på utfordringer.\\
 
 \section*{Quickstart}
 Det ligger en eksempelfil \lstinline{sett/example.tex}. For å bygge den gå i \lstinline{config.tex} og legg inn
 \lstinline|\Sets{example}| og bygg \lstinline{main.tex}.\\
+\subsection*{Ryddighet}
+Lag en mappestruktur som ser slik ut:
+\begin{verbatim}
+	Mitt prosjekt/
+		- Oppgaveplattform/ <- (denne mappa)
+		- sett/
+		- main.tex
+\end{verbatim}
+i main.tex skriver du følgende kode:
+\begin{lstlisting}
+	\def\platformdir{Oppgaveplattform}
+	\input{\platformdir/platform}
+\end{lstlisting}
+
 
 \section*{Konfigurering}
 I \lstinline|config.tex| er det lagt opp til å kunne kjøre kommandoer som bygger forskjellige utgaver av oppgavesettene.
@@ -31,7 +46,7 @@ I tillegg til \lstinline{config.tex} kan en lage \lstinline{myconfig.tex} som ov
 \textbf{OBS!} Tittel vises ikke i filer som ikke har et tall som filnavn!
 \clearpage
 \section*{Kommandoer og environments}
-Kommandoer, utenom de som er definert i \lstinline{\reldir/lib/commands.tex}, er følgende spesielle kommandoer definert\\
+Kommandoer, utenom de som er definert i \lstinline{\platformdir/commands.tex}, er følgende spesielle kommandoer definert\\
 \begin{tabularx}{\textwidth}{lX}
 	\lstinline{\\solbreak}&Setter inn ny side dersom kun løsningsforslag er inkludert (altså om \lstinline{\\SolutionManual} er gitt)\\
 	\lstinline{\\tbreak}&Setter inn ny side dersom \lstinline{\\IsTeacherCopy} er gitt (om både løsningsforslag og diskusjonsforslag er med)\\
@@ -47,8 +62,8 @@ Environments:\\
 \begin{tabularx}{\textwidth}{lX}
 	\lstinline{solution} og \lstinline{direction} & Alt i dissen environmentene vises kun dersom \lstinline{\\IsTeacherCopy} er på. \lstinline{direction} er ment som en peker til hva vi har tenkt når vi lagde oppgaven, og \lstinline{solution} er vårt løsningsforslag
 \end{tabularx}\section*{Lib-mappen}
-"Logikken" og tex-filer ligger i \lstinline|\reldir/lib/|-mappen.
-\lstinline|\reldir/lib/codestyle| bestemmer hvordan \lstinline|lstlistings| skal se ut. \lstinline|\reldir/lib/commands| inneholder kommandodefinisjoner, \lstinline|document| er logikken bak hvordan oppgavesett er implementert
+"Logikken" og tex-filer ligger i \lstinline|\platformdir/|-mappen.
+\lstinline|\platformdir/codestyle| bestemmer hvordan \lstinline|lstlistings| skal se ut. \lstinline|\platformdir/commands| inneholder kommandodefinisjoner, \lstinline|document| er logikken bak hvordan oppgavesett er implementert
 \clearpage
 \section*{Andre (egenskrevne) pakker}
 \subsection*{OLR - Operator Left Right}

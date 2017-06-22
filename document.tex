@@ -6,7 +6,7 @@
 \else
   \makeatletter
     {\Large\contentsname\par}
-    \input{\reldir/lib/generated.toc}
+    \input{\platformdir/generated.toc}
   \makeatother
 \fi
   \thispagestyle{empty}
@@ -48,6 +48,18 @@
   \ifx\setNos\empty
     \ifBuildReadme\else\readTheReadme\fi
   \else
+    \ifBuildIntent
+      \def\setNo{intent}
+      \thispagestyle{empty}
+      \addtocounter{page}{-1}
+      \buildset
+    \fi
+    \ifBuildOverview
+      \def\setNo{overview}
+      \thispagestyle{empty}
+      \addtocounter{page}{-1}
+      \buildset
+    \fi
     \foreach \setNo [count=\scount] in \setNos{
       \buildset
     }
