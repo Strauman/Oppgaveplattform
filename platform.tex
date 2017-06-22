@@ -1,4 +1,10 @@
 %%%%%% Configure in config.tex %%%%%%%%
 \input{\platformdir/preamble}
-\IfFileExists{myconfig.tex}{\input{myconfig}}{\input{config}}
+\IfFileExists{myconfig.tex}{\input{myconfig}}{
+  \IfFileExists{config.tex}{
+    \input{config}
+  }{
+    \input{\platformdir/config}
+  }
+}
 \input{\platformdir/document}

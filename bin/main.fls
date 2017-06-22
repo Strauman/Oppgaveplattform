@@ -305,6 +305,7 @@ INPUT ./uittitle.tex
 INPUT ./uittitle.tex
 INPUT config.tex
 INPUT config.tex
+INPUT config.tex
 INPUT ./document.tex
 INPUT ./document.tex
 INPUT bin/main.aux
