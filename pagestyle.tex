@@ -1,4 +1,4 @@
-%!TEX root = ../main.tex
+%!TEX root = main.tex
 %%% Definitions and stuff
 \def\versionText{}
 \def\setNo{}
@@ -9,8 +9,11 @@
 \newif\ifBuildIntent
 \newif\ifBuildOverview
 \newif\ifBuildReadme
+\newif\ifHideFootLine
+
 \let\BuildOverview = \BuildOverviewtrue
 \let\BuildReadme = \BuildReadmetrue
+\let\HideFootLine = \HideFootLinetrue
 \newcommand{\Fagkode}[1]{\def\courseCode{#1}}
 \newcommand{\Fagtittel}[1]{\def\courseTitle{#1}}
 \newcommand{\Oppgavenavn}[1]{\def\exerciseSetName{#1}}
@@ -28,7 +31,9 @@
 
 \rfoot{Side \thepage\ av \pageref{LastPage}}
 \cfoot{}
+\ifHideFootLine\else
 \renewcommand{\footrulewidth}{0.4pt}
+\fi
 \AtBeginDocument{
 
 %%% Dynamic header and footer based on ifs in main.tex
