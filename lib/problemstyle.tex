@@ -1,0 +1,108 @@
+%!TEX root = ../main.tex
+\newcommand{\pTitleLeading}{1em}
+\newcommand{\ppLeading}{0.5em}
+\newcommand{\pMargin}{2em}
+\newcommand{\ppMargin}{1em}
+\newcommand{\vsSize}{1em}
+\newcommand{\vs}{\vspace{\vsSize}}
+\makeatletter
+\newcommand\refcounter[1]{
+\edef\@currentlabel{#1}%
+}
+\makeatother
+\newcounter{problem}
+\newcounter{partproblem}[problem]
+\renewcommand{\thepartproblem}{\alph{partproblem}}
+%% Reference problems
+\DeclareRobustCommand{\pplabel}[1]{\refcounter{\theproblem}\label{pr:\setNo:#1}\refcounter{\thepartproblem}\label{pp:\setNo:#1}}
+\newcommand\ppref[1]{
+	\ref{pr:\setNo:#1}\ref{pp:\setNo:#1}
+}
+\newcommand\pref[1]{
+	\ref{pr:\setNo:#1}
+}
+
+%%% Style for problems and part problems
+%% bp: begin problem, ep: end problem
+\newcommand{\bp}[1]
+{
+	\Needspace{7\baselineskip} % Won't put it on the page unless there is room
+	{\LARGE{\textbf{Oppgave #1}}}
+	\vspace{\pTitleLeading}
+	\normalsize
+	\begin{addmargin}{\pMargin}
+}
+\newcommand{\ep}{
+	\end{addmargin}
+	\vspace{2em}
+}
+
+%% bpp: begin part problem. Argument is part problem name
+%% epp: end part problem
+\newcommand{\bpp}[1]{
+	\Needspace{3\baselineskip} % Won't put it on the page unless there is room
+	\vspace{\ppLeading}
+	   \begin{addmargin}{\ppMargin}
+		\hspace{-5ex}\large{\textbf{(#1)}}\normalsize
+		}
+\newcommand{\epp}{\hfill
+\end{addmargin}
+}
+
+%% Automatic problem numbering
+\newcommand{\bpa}[0]{
+\stepcounter{problem}
+\bp{\theproblem}
+}
+\newcommand{\bppa}[0]{
+	\stepcounter{partproblem}
+	\bpp{\alph{partproblem}}
+}
+\let\epa = \ep %Because I keep writing it
+\let\eppa = \epp %Because I keep writing it
+%% Showing and hiding environments
+%% Hidden by default. Show with, preferably in main
+%\displaySolutions
+%\displayDirections
+%\displayIdeas
+
+\def\bex{}
+\def\eex{}
+% \def\bex{\ifDisplaySolutions\textbf{Oppgave}:\\\fi}
+% \def\eex{}
+
+\newif\ifDisplaySolutions
+\newif\ifDisplayDirections
+\newif\ifDisplayIdeas
+
+\let\DisplaySolutions = \DisplaySolutionstrue
+\let\DisplayDirections = \DisplayDirectionstrue
+\let\HideDirections = \DisplayDirectionsfalse
+\let\DisplayIdeas = \DisplayIdeastrue
+
+\newcommand\IsTeacherCopy[0]{
+	\DisplaySolutions
+	\DisplayDirections
+}
+
+\newcommand\SolutionManual[0]{
+	\DisplaySolutions
+	\HideDirections
+}
+
+\NewEnviron{solution}{\ifDisplaySolutions\paragraph{Løsning}\BODY\else\fi}
+\NewEnviron{direction}{\ifDisplayDirections\paragraph{Diskusjon}\BODY\else\fi}
+\NewEnviron{idea}{\ifDisplayIdeas\paragraph{Ideoppgave:}\BODY\fi}
+
+%%Clearpage if solution included
+\def\solbreak{\ifDisplayDirections\else\ifDisplaySolutions\clearpage\fi\fi}
+\def\probbreak{\ifDisplaySolutions\else\ifDisplayDirections\else\clearpage\fi\fi}
+\def\tbreak{\ifDisplaySolutions\ifDisplayDirection\clearpage\fi\fi}
+\newif\ifshowtoc
+\newif\ifGenerateTOC
+\let\GenerateTOC = \GenerateTOCtrue
+\let\ShowTOC = \showtoctrue
+
+\newif\ifResetProblemCounterOnSet
+\let\ResetProblemCounterOnSet=\ResetProblemCounterOnSettrue
+\let\KeepProblemCounterOnSet = \ResetProblemCounterOnSetfalse

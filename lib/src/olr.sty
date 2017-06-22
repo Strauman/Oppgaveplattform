@@ -1,0 +1,50 @@
+%%% Author: Andreas Storvik Strauman
+%%% WTFPL licence
+%%% http://www.wtfpl.net/
+%%%%  		DO WHAT THE F... YOU WANT TO PUBLIC LICENSE
+%%%%  						Version 2, December 2004
+%%%%
+%%%%  Copyright (C) 2017 Sam Hocevar <sam@hocevar.net>
+%%%%
+%%%%  Everyone is permitted to copy and distribute verbatim or modified
+%%%%  copies of this license document, and changing it is allowed as long
+%%%%  as the name is changed.
+%%%%
+%%%%  		DO WHAT THE F... YOU WANT TO PUBLIC LICENSE
+%%%%  TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+%%%%
+%%%%  0. You just DO WHAT THE F... YOU WANT TO.
+%%%%
+\ProvidesPackage{olr}[2016/10/01 Operator Left Right]
+\RequirePackage{amsmath}
+\RequirePackage{etoolbox}
+\RequirePackage{xifthen}
+\makeatletter
+	\def\lrb#1{\left[#1\right]}%Left-right []%
+	\def\lrp#1{\left(#1\right)}%Left-right ()%
+	\def\lrc#1{\left\{#1\right\}}%Left-right {}%
+
+%% AUTOLR %%
+
+\def\generate@OLR#1{
+  %%\newcommand\@OLRp[2]
+  \expandafter\newcommand\csname exp@OLR#1\endcsname[2]{%\DeclareMathOperator{#1}{#2}
+%Ex: ##1:E, #1:p
+    %% \let\E\@undefined
+    \expandafter\let\csname##1\endcsname\@undefined
+    %% \DeclareMathOperator{\olr@E}{E}
+    \expandafter\DeclareMathOperator\csname olr@##1\endcsname{##2}
+    %% ifnextchar=="{" ? \olr@E\lrp : \olr@E
+    \expandafter\def\csname##1\endcsname{\@ifnextchar\bgroup{\csname olr@##1\endcsname\csname lr#1\endcsname}{\csname olr@##1\endcsname}}
+  }
+}
+\forcsvlist\generate@OLR{p,c,b}
+\newcommand{\OLR}[2][p]{
+  \csname exp@OLR#1\endcsname{#2}{#2}
+}
+\newcommand{\OLRc}[3][p]{
+  \csname exp@OLR#1\endcsname{#2}{#3}
+}
+\makeatother
+
+\endinput

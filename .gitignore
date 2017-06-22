@@ -1,0 +1,9 @@
+myconfig.tex
+sett/*.tex
+!sett/example.tex
+*.pdf
+!readme.pdf
+*.aux
+*.fdb_latexmk
+*.main.fls
+*.log

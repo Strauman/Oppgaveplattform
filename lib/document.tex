@@ -1,0 +1,56 @@
+%!TEX root = ../main.tex
+\newcommand{\predocument}[0]{
+\ifshowtoc
+\ifGenerateTOC
+  \tableofcontents
+\else
+  \makeatletter
+    {\Large\contentsname\par}
+    \input{lib/generated.toc}
+  \makeatother
+\fi
+  \thispagestyle{empty}
+  \addtocounter{page}{-1}
+  \clearpage
+\fi
+}
+\newcommand{\buildset}[0]{
+  \IfFileExists{sett/\setNo}{
+    \ifResetProblemCounterOnSet
+    \setcounter{problem}{0}
+    \fi
+    %% uitTitle defined in pagestyle
+    \uitTitle
+    \input{sett/\setNo}
+    \clearpage
+  }{
+    \thispagestyle{empty}
+    \begin{center}
+      {\Huge\color{red}\textbf{Fil sett/\setNo.tex finnes ikke}}
+    \end{center}
+    \addtocounter{page}{-1}
+    \clearpage
+  }
+
+}
+\newcommand{\readTheReadme}[0]{
+  \thispagestyle{empty}
+  % \begin{center}
+    % {\Huge Les \lstinline{README.pdf}}
+  \ifBuildReadme\else
+  {\Large Du må lese README.pdf. Her er den (Neste sidene)}
+  \fi
+  \includepdf[pages=-]{README.pdf}
+  % \end{center}
+}
+\begin{document}
+  \ifBuildReadme\readTheReadme\fi
+  \ifx\setNos\empty
+    \ifBuildReadme\else\readTheReadme\fi
+  \else
+    \foreach \setNo [count=\scount] in \setNos{
+      \buildset
+    }
+\fi
+
+\end{document}

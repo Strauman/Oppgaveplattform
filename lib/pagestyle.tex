@@ -1,0 +1,63 @@
+%!TEX root = ../main.tex
+%%% Definitions and stuff
+\def\versionText{}
+\def\setNo{}
+\def\setNos{}
+\def\courseCode{REA-0100}
+\def\courseTitle{Les README.pdf}
+\def\exerciseSetName{Oppgavesett}
+\newif\ifBuildReadme
+\let\BuildOverview = \BuildOverviewtrue
+\let\BuildReadme = \BuildReadmetrue
+\newcommand{\Fagkode}[1]{\def\courseCode{#1}}
+\newcommand{\Fagtittel}[1]{\def\courseTitle{#1}}
+\newcommand{\Oppgavenavn}[1]{\def\exerciseSetName{#1}}
+\newcommand{\Sets}[1]{\def\setNos{#1}}
+
+%% Headers and footers
+\pagestyle{fancy}
+\fancyhf{}
+
+\chead{\courseCode\ \courseTitle}
+\newif\ifCustomBuild
+\CustomBuildtrue
+\let\buildAll = \CustomBuildfalse
+
+
+\rfoot{Side \thepage\ av \pageref{LastPage}}
+\cfoot{}
+\renewcommand{\footrulewidth}{0.4pt}
+\AtBeginDocument{
+
+%%% Dynamic header and footer based on ifs in main.tex
+\ifDisplaySolutions
+  \ifDisplayDirections
+    %% If display solutions AND direction
+    \def\versionText{Løsnings- og diskusjonsforslag}
+    \else
+    %% If (display solutions) AND (NOT display direction)
+    \def\versionText{Løsningsforslag}
+  \fi
+\else
+  \ifDisplayDirections
+    %if (display direction) AND (NOT display solution)
+    \def\versionText{Diskusjonsforslag}
+  \else
+    %If (NOT display direction) AND (NOT display solution)
+    \def\versionText{}
+  \fi
+\fi
+\rhead\versionText
+\ifDisplayIdeas
+  \lfoot{\color{red}Oppgaveideer er inkludert}
+\fi
+\lhead{\exerciseSetName\ \setNo}
+\lfoot{\currentSubject}
+}
+
+%%% Front page %%%
+\setlength{\parindent}{0pt}
+
+\betterif\ifDisplayTitle
+\let\DisplayTitle = \DisplayTitletrue
+\let\HideTitle = \DisplayTitlefalse

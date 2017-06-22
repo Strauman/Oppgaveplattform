@@ -1,0 +1,9 @@
+%!TEX root = ../main.tex
+\makeatletter
+\newcommand{\betterif}[1]{
+\count@ \escapechar \escapechar \m@ne \let #1\iffalse \@if #1\iftrue \@if #1\iffalse \escapechar \count@
+% \count@ \escapechar \escapechar \m@ne \let #1\iftrue \escapechar \count@
+}
+% \testr\abc
+% \yo
+\makeatother

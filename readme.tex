@@ -1,0 +1,82 @@
+\documentclass{article}
+\input{lib/packages}
+\input{lib/codestyle}
+\begin{document}
+\input{lib/lst/latex}
+\lstset{language=[LaTeX]TeX}
+\noindent Dette er et latex-oppsett designet for å lage oppgaver med løsningsforslag. Dette er implementert med PDFLaTeX via TexLive/Latexmk i Atom. Anbefales å bruke Atom eller Sublime Text for å bygge settet. Et IDE, som for eksempel TeXStudio, kan by på utfordringer.\\
+
+\section*{Quickstart}
+Det ligger en eksempelfil \lstinline{sett/example.tex}. For å bygge den gå i \lstinline{config.tex} og legg inn
+\lstinline|\Sets{example}| og bygg \lstinline{main.tex}.\\
+
+\section*{Konfigurering}
+I \lstinline|config.tex| er det lagt opp til å kunne kjøre kommandoer som bygger forskjellige utgaver av oppgavesettene.
+Dette er kommandoene som er tilgjengelige:\\[2em]
+\begin{tabularx}{\textwidth}{lX}
+	\lstinline{\\IsTeacherCopy}&
+	Legger ved løsning- og diskusjonsforslag i tillegg til oppgavesettene. Om denne ikke kjøres, vil kun oppgaver vises i oppgavesettet, og ingen løsningsforslag\\
+	\lstinline{\\SolutionManual}&Legger ved løsningsforslag i tillegg til oppgavesettene. Altså ingen diskusjon.\\
+	\lstinline{\\Sets}&Tar en kommaseparert liste med tall. Tallene representerer hvilke sett som skal bygges i denne PDF-en. Den kan for eksempel være \lstinline|\\Sets\{1,...,14\}| for å bygge settene 1 til og med 14.\\
+	\lstinline{\\KeepProblemCounterOnSet}&Om denne er gitt, vil oppgavenummerene ikke starte på nytt for hvert sett som er gitt i \lstinline{\\Sets}. \\
+	\lstinline{\\HideTitle}&Om denne er gitt vil det ikke være tittel på noen av oppgavesettene\\
+	\lstinline{\\DisplayIdeas}&Default ikke gitt. Når disse oppgavesettene ble produsert, var det noen oppgaver som ble laget som utkast, men som ikke ble med i det ferdige. Du kan vise disse utkastene ved å kjøre \lstinline{\\DisplayIdeas} i config.tex.\\
+	\lstinline{\\Fagkode}&Sett fagkode som vises på tittelsiden(e) og i topp- eller bunntekst. F.eks. `FYS-1002'\\
+	\lstinline{\\Fagtittel}&Tittel på faget. For eksempel `Elektromagnetisme'.\\
+	\lstinline{\\Oppgavenavn}&Hva slags oppgaver er det? For eksempel kan her være `Konsepptoppgavesett'. Default er `Oppgavesett'\\
+	\lstinline{\\subject}&Denne er til bruk i de forskjellige settene. Oppgavesettene skal legges i `sett/'-mappen.
+												Subject tar et argument som skal inneholde temaet til det nåværende settet, og legges da automatisk i bunnekst og innholdsfortegnelse.
+\end{tabularx}
+I tillegg til \lstinline{config.tex} kan en lage \lstinline{myconfig.tex} som overstyrer. Dette for beleilighet ved samarbeid i et SVM som for eksempel git.\\
+\textbf{OBS!} Tittel vises ikke i filer som ikke har et tall som filnavn!
+\clearpage
+\section*{Kommandoer og environments}
+Kommandoer, utenom de som er definert i \lstinline{lib/commands.tex}, er følgende spesielle kommandoer definert\\
+\begin{tabularx}{\textwidth}{lX}
+	\lstinline{\\solbreak}&Setter inn ny side dersom kun løsningsforslag er inkludert (altså om \lstinline{\\SolutionManual} er gitt)\\
+	\lstinline{\\tbreak}&Setter inn ny side dersom \lstinline{\\IsTeacherCopy} er gitt (om både løsningsforslag og diskusjonsforslag er med)\\
+	\lstinline{\\probbreak}&Setter in ny side dersom kun oppgavesett bygges. Altså hverken \lstinline{\\IsTeacherCopy} eller \lstinline{\\SolutionManual} er gitt.\\
+	\lstinline{\\bpa}&Begin Problem Automatic (Numbering). Denne setter inn tittel "Oppgave TALL", og lager marger.\\
+	\lstinline{\\ep}&End problem. Denne fjerner margen fra \lstinline{\\bpa}. For hver \lstinline{\\bpa} må det eksistere en \lstinline{\\ep}\\
+	\lstinline{\\bppa}&Lik som \lstinline{\\bpa}, bare at den legger inn deloppgaver (Begin Part Problem Automatic).\\\lstinline{\\epp}&End Part Problem\\
+	\lstinline{\\pplabel}&Tar et argument som label. Denne labelen kan så brukes i \lstinline{\\ppref} eller \lstinline{\\pref} for å referere til delopgave eller oppgave henholdsvis.\\
+	\lstinline{\\ppref}&Tar et argument som er label i fra \lstinline{\\pplabel}. Denne printer så ut oppgave og deloppgave som \lstinline{\\pplabel} med tilsvaren label var kalt i. F.eks 1a.\\
+	\lstinline{\\pref}&Lik som \lstinline{\\ppref} med bare at den ikke printer deloppgave, men kun oppgavenummer. F.eks. 1.
+\end{tabularx}
+Environments:\\
+\begin{tabularx}{\textwidth}{lX}
+	\lstinline{solution} og \lstinline{direction} & Alt i dissen environmentene vises kun dersom \lstinline{\\IsTeacherCopy} er på. \lstinline{direction} er ment som en peker til hva vi har tenkt når vi lagde oppgaven, og \lstinline{solution} er vårt løsningsforslag
+\end{tabularx}\section*{Lib-mappen}
+"Logikken" og tex-filer ligger i \lstinline|lib/|-mappen.
+\lstinline|lib/codestyle| bestemmer hvordan \lstinline|lstlistings| skal se ut. \lstinline|lib/commands| inneholder kommandodefinisjoner, \lstinline|document| er logikken bak hvordan oppgavesett er implementert
+\clearpage
+\section*{Andre (egenskrevne) pakker}
+\subsection*{OLR - Operator Left Right}
+Bruk \lstinline|\OLR[p]{sin}| vil gjøre at LaTeX-kommandoen \lstinline{\sin} vil kunne ta argument, som blir satt i left/right parantesmodus. p er parantes, b er square brackets \lstinline|[]| og c er curly braces \lstinline|{}|.
+Eksempel
+
+\begin{lstlisting}
+	\OLR[p]{sin}
+	\[ \sin{\sqrt{\frac{\omega}{k}}} \]
+\end{lstlisting}
+gir:\\
+%%% Her er det ikke brukt OLR fordi \OLR må legges i preamble %%%
+\[ \sin\left(\sqrt{\frac{\omega}{k}}\right) \]
+
+\subsection*{explain}
+Lager piler hit og dit. Først må en bruke \lstinline|\tagexp{MYTAGNAME}{MATH}| i mathmode og senere bruke \lstinline|\explain[valg]{MYTAGNAME}{FORKLARING}|. Valgene er mange, men i hovedsak er det posisjon som er interessant å endre her. Posisjoner er \lstinline{above} og \lstinline{below} i kombinasjon med \lstinline{left} og \lstinline{right}. For eksempel
+\begin{lstlisting}
+	$\tagexp{euconst}{\mathrm{e}}^{i\pi}=-1$
+	\explain[below right]{euconst}{Eulers konstant i Eulers identitet}
+\end{lstlisting}
+Gir følgende:\\
+$\tagexp{euconst}{\mathrm{e}}^{i\pi}=-1$
+\explain[below right]{euconst}{Eulers konstant i Eulers identitet}
+\vspace*{3em}
+\section*{Flere konfigurerings-kommandoer}\textbf{Helst ikke bruk disse for konfigurering. De er ment for bruk i bakgrunnen.}\\
+\begin{tabularx}{\textwidth}{lX}
+	\lstinline{\\DisplayTitle}&Gitt ved default. Om denne er gitt vil det være en tittel på alle oppgavesettene. Motpart: \lstinline{\\HideTitle}\\
+	\lstinline{\\DisplaySolutions}&Denne er ment til å kun vise løsningsforslag og oppgavetekst. Altså ikke diskusjon. Tanken er at man skal kunne gjøre dette tilgjengelig for elevene om ønskelig.\\
+	\lstinline{\\DisplayDirections}&Er egentlig med for å være i bakgrunnen. Har samme effekt som \lstinline{\\DisplaySolutions}, bare med \lstinline{direction} environment.\\
+\end{tabularx}
+\end{document}

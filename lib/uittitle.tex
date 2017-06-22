@@ -1,0 +1,17 @@
+%!TEX root = ../main.tex
+\newcommand{\uitTitle}{
+  \IfInteger{\setNo}{
+    \ifDisplayTitle
+      \begin{center}
+        \includegraphics[scale=0.16]{lib/img/logoUit}\\
+        {\huge{\textbf{\exerciseSetName\ \setNo \\\courseCode - \courseTitle\\}}}{\large\versionText}
+      \end{center}
+      \fi
+    }{}%END ifInteger
+}
+\def\currentSubject{}
+\newcommand\subject[1]{
+  \addcontentsline{toc}{section}{#1}
+  \def\currentSubject{#1}
+  {\vspace{-1em}\large\begin{center}#1\end{center}}
+}

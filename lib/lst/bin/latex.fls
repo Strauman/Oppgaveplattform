@@ -1,0 +1,6 @@
+PWD /Users/Andreas/Documents/uit/fag/TA/FYS-1002/Oppgavesett-FYS-1002/lib/lst
+INPUT /usr/local/texlive/2016basic/texmf.cnf
+INPUT /usr/local/texlive/2016basic/texmf-dist/web2c/texmf.cnf
+INPUT /usr/local/texlive/2016basic/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT latex.tex
+OUTPUT bin/latex.log

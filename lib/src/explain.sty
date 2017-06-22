@@ -1,0 +1,112 @@
+%%% Author: Andreas Storvik Strauman
+%%% WTFPL licence
+%%% http://www.wtfpl.net/
+%%%%  		DO WHAT THE F... YOU WANT TO PUBLIC LICENSE
+%%%%  						Version 2, December 2004
+%%%%
+%%%%  Copyright (C) 2017 Sam Hocevar <sam@hocevar.net>
+%%%%
+%%%%  Everyone is permitted to copy and distribute verbatim or modified
+%%%%  copies of this license document, and changing it is allowed as long
+%%%%  as the name is changed.
+%%%%
+%%%%  		DO WHAT THE F... YOU WANT TO PUBLIC LICENSE
+%%%%  TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+%%%%
+%%%%  0. You just DO WHAT THE F... YOU WANT TO.
+%%%%
+
+\ProvidesPackage{explain}[2017/03/18 Explain symbols in equations with arrows]
+\RequirePackage{tikz}
+\RequirePackage{pgfkeys}
+\usepackage{calc}
+\usetikzlibrary{tikzmark,calc,arrows,shapes,decorations.pathreplacing}
+\makeatletter
+\newlength{\expl@contentWidth}
+\newlength{\expl@contentHeight}
+\newcounter{explain@inline}
+\def\belowM{-1}
+\def\aboveM{1}
+\def\centerM{0}
+
+\pgfkeys{
+/explain/.is family, /explain,
+default/.style = {rightset=0, vspace=1, hspace=0, bend={}, align=below, hpos=0.5, vspad=1, node=\empty, hpad=0, arrwid=0.05mm, ato,shift={0,0},twidth=\textwidth,ahroot=0em},
+bend/.estore in = \explBend,
+rightset/.estore in = \explRight,
+vspace/.estore in = \explVDist,
+hspace/.estore in = \explHDist,
+ahroot/.estore in = \explAHDist,
+coord/.estore in = \explCoord,
+align/.estore in = \explAlign,
+hpos/.estore in = \explHcenter,
+vspad/.estore in = \explVSPad,
+node/.estore in = \explNodeAlign,
+line/.estore in = \explLine,
+hpad/.estore in = \explHpad,
+arrwid/.estore in =\explArrWid,
+shift/.estore in = \explShift,
+twidth/.estore in = \explTWidth,
+override/.style = {},
+alignments/.cd,
+	left/.initial=\belowM,
+	right/.initial=\belowM,
+	above/.initial = \aboveM,
+	above left/.initial = \aboveM,
+	above right/.initial = \aboveM,
+	below/.initial = \belowM,
+	below left/.initial = \belowM,
+	below right/.initial = \belowM,
+  none/.initial = 0,
+  vcenter/.initial = 0.25,
+}
+\newcommand{\explainDefaults}[1]{
+\pgfkeys{/explain,default/.append style = {#1}}
+}
+\newcommand{\explainOverride}[1]{
+\pgfkeys{/explain,override/.append style = {#1}}
+}
+\pgfkeys{
+/explain,
+ato/.style={line=<-},
+ato/.code={\tikzset{arrowstyle/.append style={-triangle 45}}},
+afrom/.style={line=->},
+afrom/.code={\tikzset{arrowstyle/.append style={triangle 45-}}},
+near/.append style={vspad=0.3},
+above/.style = {rightset=0,vspace=1,bend=\empty,align=above,node=above},
+above right/.style = {rightset=1,vspace=1,bend=bend left,align=above,node=right,vspad=1.25},
+above left/.style = {rightset=-1,vspace=1,bend=bend right,align=above,node=left,vspad=1.25},
+below/.style = {rightset=0,vspace=1,bend=\empty,align=below,node=below},
+below left/.add style = {below}{rightset=-1, bend=bend left, node=left, near},
+below right/.add style = {below}{rightset=1,bend=bend right,node=right,near},
+full pad/.append style = {vspad=1},
+below left center/.add style = {below left}{node=below,bend=bend left},
+below right center/.add style = {below right}{node=below right,bend=bend right},
+brace adjust/.append style = {hpad=2, full pad},
+right/.style={node=right,rightset=1,align=vcenter,hpos=1,vspad=1,vspace=0,hpad=0.5ex},
+left/.style={node=left,rightset=-1,align=vcenter,hpos=0,vspad=1,vspace=0,hpad=-0.5ex},
+}
+\newcommand{\tagexp}[2]{
+	\tikzmark{#1}
+	\ifmmode
+		\global\@namedef{expmark@val@#1}{\ensuremath{#2}}
+		\ensuremath{#2}
+	\else
+		\global\@namedef{expmark@val@#1}{#2}
+		#2
+	\fi
+}
+\newcommand{\explain}[3][]{
+    \tikzstyle{arrowstyle}=[line width=\explArrWid,draw=black,postaction={draw, line width=\explArrWid,shorten >=\explArrWid, shorten <=\explArrWid, -}]
+		\pgfkeys{/explain,default,#1,override}
+
+		\settowidth{\expl@contentWidth}{\@nameuse{expmark@val@#2}}
+		\settoheight{\expl@contentHeight}{\@nameuse{expmark@val@#2}}
+		\def\explHeight{\expl@contentHeight}
+		\def\explWidth{\expl@contentWidth}
+		\def\explPos{\pgfkeysvalueof{/explain/alignments/\explAlign}}
+		\tikz[remember picture, shift={(\explShift)}]{\draw[overlay, arrowstyle]($(pic cs:#2)+(\explHcenter*\explWidth+\explHpad+\explAHDist,\explPos*\explHeight*\explVSPad)$) to[\explBend] ++($(\explRight+\explHDist,\explPos*\explVDist)$)node[\explNodeAlign,text width=\explTWidth]{#3}}
+
+}
+\makeatother
+\endinput

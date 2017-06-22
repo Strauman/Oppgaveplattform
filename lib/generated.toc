@@ -1,0 +1,97 @@
+\select@language {norsk}
+\contentsline {section}{Elektrisk ladning og Coulombs lov}{1}
+\contentsline {paragraph}{L\IeC {\o }sning}{1}
+\contentsline {paragraph}{Diskusjon}{1}
+\contentsline {paragraph}{L\IeC {\o }sning}{1}
+\contentsline {paragraph}{Diskusjon}{1}
+\contentsline {paragraph}{L\IeC {\o }sning}{2}
+\contentsline {paragraph}{L\IeC {\o }sning}{2}
+\contentsline {paragraph}{L\IeC {\o }sning}{2}
+\contentsline {paragraph}{L\IeC {\o }sning}{3}
+\contentsline {section}{Gauss lov og elektrostatisk potensiale}{4}
+\contentsline {paragraph}{L\IeC {\o }sning}{4}
+\contentsline {paragraph}{L\IeC {\o }sning}{5}
+\contentsline {paragraph}{L\IeC {\o }sning}{5}
+\contentsline {paragraph}{L\IeC {\o }sning}{5}
+\contentsline {paragraph}{Diskusjon}{5}
+\contentsline {paragraph}{L\IeC {\o }sning}{6}
+\contentsline {paragraph}{Diskusjon}{6}
+\contentsline {section}{Elektrostatisk potensiale, dipoler og energi}{7}
+\contentsline {paragraph}{L\IeC {\o }sning}{7}
+\contentsline {paragraph}{L\IeC {\o }sning}{8}
+\contentsline {paragraph}{L\IeC {\o }sning}{9}
+\contentsline {paragraph}{Diskusjon}{9}
+\contentsline {paragraph}{L\IeC {\o }sning}{10}
+\contentsline {section}{Elektrisk str\IeC {\o }m, str\IeC {\o }mtetthet og Ohms lov}{11}
+\contentsline {paragraph}{L\IeC {\o }sning}{11}
+\contentsline {paragraph}{L\IeC {\o }sning}{11}
+\contentsline {paragraph}{Diskusjon}{12}
+\contentsline {paragraph}{L\IeC {\o }sning}{12}
+\contentsline {paragraph}{L\IeC {\o }sning}{13}
+\contentsline {paragraph}{L\IeC {\o }sning}{13}
+\contentsline {section}{Dielektriske materialer, polarisasjon og ladningskonservering}{14}
+\contentsline {paragraph}{L\IeC {\o }sning}{14}
+\contentsline {paragraph}{L\IeC {\o }sning}{15}
+\contentsline {paragraph}{L\IeC {\o }sning}{15}
+\contentsline {paragraph}{L\IeC {\o }sning}{16}
+\contentsline {paragraph}{L\IeC {\o }sning}{17}
+\contentsline {paragraph}{Diskusjon}{17}
+\contentsline {section}{Elektrisk kapasitans, elektrostatisk energi og speilladningsmetoden}{18}
+\contentsline {paragraph}{L\IeC {\o }sning}{18}
+\contentsline {paragraph}{L\IeC {\o }sning}{18}
+\contentsline {paragraph}{L\IeC {\o }sning}{19}
+\contentsline {paragraph}{L\IeC {\o }sning}{19}
+\contentsline {paragraph}{L\IeC {\o }sning}{19}
+\contentsline {paragraph}{Diskusjon}{19}
+\contentsline {section}{Elektriske kretser}{20}
+\contentsline {paragraph}{L\IeC {\o }sning}{20}
+\contentsline {paragraph}{Diskusjon}{20}
+\contentsline {paragraph}{L\IeC {\o }sning}{21}
+\contentsline {paragraph}{Diskusjon}{21}
+\contentsline {paragraph}{L\IeC {\o }sning}{21}
+\contentsline {paragraph}{L\IeC {\o }sning}{22}
+\contentsline {paragraph}{Diskusjon}{22}
+\contentsline {paragraph}{L\IeC {\o }sning}{22}
+\contentsline {paragraph}{L\IeC {\o }sning}{23}
+\contentsline {section}{Impedans og resonans}{24}
+\contentsline {paragraph}{L\IeC {\o }sning}{24}
+\contentsline {paragraph}{L\IeC {\o }sning}{25}
+\contentsline {paragraph}{L\IeC {\o }sning}{26}
+\contentsline {paragraph}{L\IeC {\o }sning}{26}
+\contentsline {section}{Magnetostatiske felt, Biot savarts lov og Amperes lov}{27}
+\contentsline {paragraph}{L\IeC {\o }sning}{28}
+\contentsline {paragraph}{L\IeC {\o }sning}{28}
+\contentsline {paragraph}{L\IeC {\o }sning}{29}
+\contentsline {paragraph}{L\IeC {\o }sning}{30}
+\contentsline {paragraph}{Diskusjon}{30}
+\contentsline {section}{Magnetisk fluks, vektorpotensial, krefter og kraftmoment}{31}
+\contentsline {paragraph}{L\IeC {\o }sning}{31}
+\contentsline {paragraph}{L\IeC {\o }sning}{31}
+\contentsline {paragraph}{Diskusjon}{31}
+\contentsline {paragraph}{L\IeC {\o }sning}{32}
+\contentsline {paragraph}{Diskusjon}{32}
+\contentsline {paragraph}{L\IeC {\o }sning}{33}
+\contentsline {paragraph}{Diskusjon}{33}
+\contentsline {section}{Magnetisering og magnetiske dipoler}{34}
+\contentsline {paragraph}{L\IeC {\o }sning}{34}
+\contentsline {paragraph}{L\IeC {\o }sning}{34}
+\contentsline {paragraph}{L\IeC {\o }sning}{35}
+\contentsline {paragraph}{L\IeC {\o }sning}{35}
+\contentsline {paragraph}{L\IeC {\o }sning}{36}
+\contentsline {paragraph}{L\IeC {\o }sning}{36}
+\contentsline {paragraph}{L\IeC {\o }sning}{36}
+\contentsline {paragraph}{L\IeC {\o }sning}{36}
+\contentsline {paragraph}{L\IeC {\o }sning}{37}
+\contentsline {section}{Faradays lov, forskyvningsstr\IeC {\o }m og Maxwells likninger}{38}
+\contentsline {paragraph}{L\IeC {\o }sning}{39}
+\contentsline {paragraph}{L\IeC {\o }sning}{39}
+\contentsline {paragraph}{L\IeC {\o }sning}{40}
+\contentsline {paragraph}{L\IeC {\o }sning}{41}
+\contentsline {paragraph}{L\IeC {\o }sning}{41}
+\contentsline {paragraph}{L\IeC {\o }sning}{41}
+\contentsline {paragraph}{L\IeC {\o }sning}{42}
+\contentsline {paragraph}{L\IeC {\o }sning}{42}
+\contentsline {section}{Magnetisk induksjon}{43}
+\contentsline {paragraph}{L\IeC {\o }sning}{43}
+\contentsline {paragraph}{L\IeC {\o }sning}{43}
+\contentsline {paragraph}{L\IeC {\o }sning}{43}
