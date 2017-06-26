@@ -31,7 +31,7 @@
 
 \pgfkeys{
 /explain/.is family, /explain,
-default/.style = {rightset=0, vspace=1, hspace=0, bend={}, align=below, hpos=0.5, vspad=1, node=\empty, hpad=0, arrwid=0.05mm, ato,shift={0,0},twidth=\textwidth,ahroot=0em},
+default/.style = {rightset=0, vspace=1, hspace=0, bend={}, align=below, hpos=0.5, vspad=1, node=\empty, hpad=0, arrwid=0.05mm, ato,shift={0,0},twidth=\empty,ahroot=0em},
 bend/.estore in = \explBend,
 rightset/.estore in = \explRight,
 vspace/.estore in = \explVDist,
@@ -80,7 +80,7 @@ below/.style = {rightset=0,vspace=1,bend=\empty,align=below,node=below},
 below left/.add style = {below}{rightset=-1, bend=bend left, node=left, near},
 below right/.add style = {below}{rightset=1,bend=bend right,node=right,near},
 full pad/.append style = {vspad=1},
-below left center/.add style = {below left}{node=below,bend=bend left},
+below left center/.add style = {below left}{node=below left,bend=bend left},
 below right center/.add style = {below right}{node=below right,bend=bend right},
 brace adjust/.append style = {hpad=2, full pad},
 right/.style={node=right,rightset=1,align=vcenter,hpos=1,vspad=1,vspace=0,hpad=0.5ex},
@@ -105,7 +105,13 @@ left/.style={node=left,rightset=-1,align=vcenter,hpos=0,vspad=1,vspace=0,hpad=-0
 		\def\explHeight{\expl@contentHeight}
 		\def\explWidth{\expl@contentWidth}
 		\def\explPos{\pgfkeysvalueof{/explain/alignments/\explAlign}}
-		\tikz[remember picture, shift={(\explShift)}]{\draw[overlay, arrowstyle]($(pic cs:#2)+(\explHcenter*\explWidth+\explHpad+\explAHDist,\explPos*\explHeight*\explVSPad)$) to[\explBend] ++($(\explRight+\explHDist,\explPos*\explVDist)$)node[\explNodeAlign,text width=\explTWidth]{#3}}
+		\ifx\explTWidth\empty
+			\pgfkeys{/tikz, nodekeys/.style = {\explNodeAlign}}
+		\else
+			\pgfkeys{/tikz, nodekeys/.style = {\explNodeAlign,text width=\explTWidth}}
+		\fi
+
+		\tikz[remember picture, shift={(\explShift)}]{\draw[overlay, arrowstyle]($(pic cs:#2)+(\explHcenter*\explWidth+\explHpad+\explAHDist,\explPos*\explHeight*\explVSPad)$) to[\explBend] ++($(\explRight+\explHDist,\explPos*\explVDist)$)node[nodekeys]{#3}}
 
 }
 \makeatother
