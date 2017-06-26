@@ -1,4 +1,5 @@
 %!TEX root = ../main.tex
+\def\inputx#1{\IfFileExists{#1.tex}{\input{#1}}{}}
 \makeatletter
 \newcommand{\betterif}[1]{
 \count@ \escapechar \escapechar \m@ne \let #1\iffalse \@if #1\iftrue \@if #1\iffalse \escapechar \count@

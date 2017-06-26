@@ -1,9 +1,14 @@
 %!TEX root = ../main.tex
 \documentclass{article}
+\def\hookdir{local}
 \input{\platformdir/logic}
+
 \input{\platformdir/packages}
+\inputx{\hookdir/packages}
+
 \input{\platformdir/commands}
-\IfFileExists{commands}{\input{commands}}{}
+\inputx{\hookdir/commands}
+
 \input{\platformdir/problemstyle}
 \input{\platformdir/pagestyle}
 \input{\platformdir/codestyle}
