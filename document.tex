@@ -34,13 +34,14 @@
 
 }
 \newcommand{\readTheReadme}[0]{
-  \thispagestyle{empty}
-  % \begin{center}
-    % {\Huge Les \lstinline{README.pdf}}
   \ifBuildReadme\else
-  {\Large Du må lese README.pdf. Her er den (Neste sidene)}
+  % \thispagestyle{empty}
+  % {\Large Du må lese README.pdf. Her er den (Neste sidene)}
+  \rfoot{}\cfoot{}\lhead{}
+  \chead{REA-0101 Reading the readme}
+  \renewcommand{\footrulewidth}{0pt}
   \fi
-  \includepdf[pages=-]{\platformdir/README.pdf}
+  \includepdf[pages=-, pagecommand={}]{\platformdir/README.pdf}
   % \end{center}
 }
 \begin{document}
