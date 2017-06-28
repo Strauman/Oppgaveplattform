@@ -17,10 +17,10 @@
 \DeclareRobustCommand{\pplabel}[1]{\refcounter{\theproblem}\label{pr:\setNo:#1}\refcounter{\thepartproblem}\label{pp:\setNo:#1}}
 \let\pptag = \pplabel
 \newcommand\ppref[1]{
-	\ref{pr:\setNo:#1}\ref{pp:\setNo:#1}
+	\ref{pr:\setNo:#1}\ref{pp:\setNo:#1}\relax%
 }
 \newcommand\pref[1]{
-	\ref{pr:\setNo:#1}
+	\ref{pr:\setNo:#1}\relax%
 }
 
 %%% Style for problems and part problems
