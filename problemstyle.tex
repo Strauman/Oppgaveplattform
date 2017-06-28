@@ -99,6 +99,10 @@
 \def\solbreak{\ifDisplayDirections\else\ifDisplaySolutions\clearpage\fi\fi}
 \def\probbreak{\ifDisplaySolutions\else\ifDisplayDirections\else\clearpage\fi\fi}
 \def\tbreak{\ifDisplaySolutions \ifDisplayDirections \clearpage \fi \fi}
+\def\tosbreak{\ifDisplayDirections\clearpage\fi\ifDisplaySolutions\clearpage\fi}
+
+\let\sbreak = \solbreak
+\let\pbreak = \probbreak
 \newif\ifshowtoc
 \newif\ifGenerateTOC
 \let\GenerateTOC = \GenerateTOCtrue
