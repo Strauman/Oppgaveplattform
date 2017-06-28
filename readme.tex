@@ -24,6 +24,14 @@ Lag en mappe som heter `local'. Her kan du lage filene blant annet \lstinline{co
 \section*{Konfigurering}
 I \lstinline|config.tex| er det lagt opp til å kunne kjøre kommandoer som bygger forskjellige utgaver av oppgavesettene.
 Dette er kommandoene som er tilgjengelige:\\[2em]
+\subsection*{Viktigste konfigureringskommandoer}
+\begin{tabularx}{\textwidth}{lX}
+	\lstinline{\\SolutionManual}&Legger ved løsningsforslag i tillegg til oppgavesettene. Altså ingen diskusjon.\\
+	\lstinline{\\Sets}&Tar en kommaseparert liste med tall. Tallene representerer hvilke sett som skal bygges i denne PDF-en. Den kan for eksempel være \lstinline|\\Sets\{1,...,14\}| for å bygge settene 1 til og med 14.\\
+	\lstinline{\\Fagkode}&Sett fagkode som vises på tittelsiden(e) og i topp- eller bunntekst. F.eks. `FYS-1002'\\
+	\lstinline{\\Fagtittel}&Tittel på faget. For eksempel `Elektromagnetisme'.
+\end{tabularx}
+\subsection*{Alle konfigureringskommandoer}
 \begin{tabularx}{\textwidth}{lX}
 	\lstinline{\\IsTeacherCopy}&
 	Legger ved løsning- og diskusjonsforslag i tillegg til oppgavesettene. Om denne ikke kjøres, vil kun oppgaver vises i oppgavesettet, og ingen løsningsforslag\\
@@ -43,18 +51,36 @@ Dette er kommandoene som er tilgjengelige:\\[2em]
 I tillegg til \lstinline{config.tex} kan en lage \lstinline{myconfig.tex} som overstyrer. Dette for beleilighet ved samarbeid i et SVM som for eksempel git.\\
 \textbf{OBS!} Tittel vises ikke i filer som ikke har et tall som filnavn!
 \clearpage
-\section*{Kommandoer og environments}
+\section*{Kommandoer og environments til bruk i settene}
+
 Kommandoer, utenom de som er definert i \lstinline{\platformdir/commands.tex}, er følgende spesielle kommandoer definert\\
+\subsection*{Viktigste kommandoer og enviroments}
+\begin{tabularx}{\textwidth}{lX}
+	\lstinline{\\bpa}&Begin Problem Automatic (Numbering). Denne setter inn tittel "Oppgave TALL", og lager marger.\\
+	\lstinline{\\ep}&End problem. Denne fjerner margen fra \lstinline{\\bpa}. For hver \lstinline{\\bpa} må det eksistere en \lstinline{\\ep}. Kan også bruke \lstinline{\\epa}\\
+	\lstinline{\\bppa}&Lik som \lstinline{\\bpa}, bare at den legger inn deloppgaver (Begin Part Problem Automatic).\\
+	\lstinline{\\epp}&End part problem. Denne fjerner margen fra \lstinline{\\bppa}. For hver \lstinline{\\bppa} må det eksistere en \lstinline{\\epp}. Kan også bruke \lstinline{\\eppa}\\
+	\lstinline{\\solbreak}&Setter inn ny side dersom kun løsningsforslag er inkludert (altså om \lstinline{\\SolutionManual} er gitt)\\
+	\lstinline{\\tbreak}&Setter inn ny side dersom \lstinline{\\IsTeacherCopy} er gitt (om både løsningsforslag og diskusjonsforslag er med)\\
+	\lstinline{\\probbreak}&Setter in ny side dersom kun oppgavesett bygges. Altså hverken \lstinline{\\IsTeacherCopy} eller \lstinline{\\SolutionManual} er gitt.\\
+\end{tabularx}
+Environments:\\
+\begin{tabularx}{\textwidth}{lX}
+	\lstinline{solution} & Alt i dette environmentet vises kun dersom \lstinline{\\SolutionManual} er gitt.
+\end{tabularx}
+\subsection*{Alle kommandoer og enviroments}
 \begin{tabularx}{\textwidth}{lX}
 	\lstinline{\\solbreak}&Setter inn ny side dersom kun løsningsforslag er inkludert (altså om \lstinline{\\SolutionManual} er gitt)\\
 	\lstinline{\\tbreak}&Setter inn ny side dersom \lstinline{\\IsTeacherCopy} er gitt (om både løsningsforslag og diskusjonsforslag er med)\\
 	\lstinline{\\probbreak}&Setter in ny side dersom kun oppgavesett bygges. Altså hverken \lstinline{\\IsTeacherCopy} eller \lstinline{\\SolutionManual} er gitt.\\
 	\lstinline{\\bpa}&Begin Problem Automatic (Numbering). Denne setter inn tittel "Oppgave TALL", og lager marger.\\
-	\lstinline{\\ep}&End problem. Denne fjerner margen fra \lstinline{\\bpa}. For hver \lstinline{\\bpa} må det eksistere en \lstinline{\\ep}\\
-	\lstinline{\\bppa}&Lik som \lstinline{\\bpa}, bare at den legger inn deloppgaver (Begin Part Problem Automatic).\\\lstinline{\\epp}&End Part Problem\\
+	\lstinline{\\ep}&End problem. Denne fjerner margen fra \lstinline{\\bpa}. For hver \lstinline{\\bpa} må det eksistere en \lstinline{\\ep}. Kan også bruke \lstinline{\\epa}\\
+	\lstinline{\\bppa}&Lik som \lstinline{\\bpa}, bare at den legger inn deloppgaver (Begin Part Problem Automatic).\\
 	\lstinline{\\pplabel}&Tar et argument som label. Denne labelen kan så brukes i \lstinline{\\ppref} eller \lstinline{\\pref} for å referere til delopgave eller oppgave henholdsvis.\\
 	\lstinline{\\ppref}&Tar et argument som er label i fra \lstinline{\\pplabel}. Denne printer så ut oppgave og deloppgave som \lstinline{\\pplabel} med tilsvaren label var kalt i. F.eks 1a.\\
-	\lstinline{\\pref}&Lik som \lstinline{\\ppref} med bare at den ikke printer deloppgave, men kun oppgavenummer. F.eks. 1.
+	\lstinline{\\pref}&Lik som \lstinline{\\ppref} med bare at den ikke printer deloppgave, men kun oppgavenummer. F.eks. 1.\\
+	\lstinline{\\pSkip}&Hopp over et oppgave-tall.\\
+	\lstinline{\\ppSkip}&Hopp over et deloppgave-`tall'
 \end{tabularx}
 Environments:\\
 \begin{tabularx}{\textwidth}{lX}
