@@ -19,10 +19,17 @@
     \ifResetProblemCounterOnSet
     \setcounter{problem}{0}
     \fi
+    \ifBlankBeforeNew
+      \IfInteger{\setNos}{}{%Building more than one set
+        %Building an actual set
+        \IfInteger{\setNo}{\null\thispagestyle{empty}\addtocounter{page}{-1}\newpage}{}
+      }
+    \fi
     %% uitTitle defined in pagestyle
     \uitTitle
     \input{sett/\setNo}
     \clearpage
+
   }{
     \thispagestyle{empty}
     \begin{center}
