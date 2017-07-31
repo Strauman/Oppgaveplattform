@@ -58,6 +58,49 @@
 \bp{\theproblem}
 }
 
+\newif\ifLabelBranches
+\let\LabelBranches = \LabelBranchestrue
+
+%% Automatic problem numbering with branching
+%% Takes a list of {path1,...,pathN}
+%% Outcome is governed by \BranchNos, set by \Branches{},
+%% which indexes the argument list. If \BranchNos is empty,
+%% all indexes are printed. If \BranchNos is not empty but
+%% does not contain any relevant index for the input list,
+%% nothing is printed.
+\newcommand{\branchProblem}[1]{
+	\stepcounter{problem}
+	\newcounter{BranchIndexCounter}
+
+	\ifx\branchNos\empty
+		\foreach \path in #1{
+			\stepcounter{BranchIndexCounter}
+			\bp{\theproblem\ - Branch \Alph{BranchIndexCounter}}
+			\input{\path}
+			\ep
+		}
+	\else
+		\foreach \path in #1{
+			\stepcounter{BranchIndexCounter}
+			\foreach \branchNo in \branchNos{
+				\ifnumcomp{\branchNo}{=}{\theBranchIndexCounter}{
+					\ifLabelBranches
+						\bp{\theproblem\ - Branch \Alph{BranchIndexCounter}}
+					\else
+						\bp{\theproblem}
+					\fi
+					\input{\path}
+					\ep
+				}{
+					%% EMPTY ELSE STATEMENT
+				}
+			}
+		}
+	\fi
+}
+
+
+
 \newcommand{\bppa}[0]{
 	\stepcounter{partproblem}
 	\bpp{\alph{partproblem}}
