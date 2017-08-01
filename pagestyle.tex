@@ -5,8 +5,9 @@
 \def\setNos{}
 \def\BranchNos{}
 \def\courseCode{REA-0100}
-\def\courseTitle{Les README.pdf}
-\def\exerciseSetName{Oppgavesett}
+\def\courseTitle{Read the README.pdf}
+\def\exerciseSetName{Problem Set}
+\IfLanguageName{norsk}{\def\exerciseSetName{Oppgavesett}}{}
 \newif\ifBuildIntent
 \newif\ifBuildOverview
 \newif\ifBuildReadme
@@ -35,7 +36,8 @@
 \let\buildAll = \CustomBuildfalse
 
 
-\rfoot{Side \thepage\ av \pageref{LastPage}}
+\rfoot{Page \thepage\ of \pageref{LastPage}}
+\IfLanguageName{norsk}{\rfoot{Side \thepage\ av \pageref{LastPage}}}{}
 \cfoot{}
 \AtBeginDocument{
 \ifHideFootLine
@@ -46,15 +48,18 @@
 \ifDisplaySolutions
   \ifDisplayDirections
     %% If display solutions AND direction
-    \def\versionText{Løsnings- og diskusjonsforslag}
+    \def\versionText{Solution and discussion}
+    \IfLanguageName{norsk}{\def\versionText{Løsnings- og diskusjonsforslag}}{}
     \else
     %% If (display solutions) AND (NOT display direction)
-    \def\versionText{Løsningsforslag}
+    \def\versionText{Solution}
+    \IfLanguageName{norsk}{\def\versionText{Løsningsforslag}}{}
   \fi
 \else
   \ifDisplayDirections
     %if (display direction) AND (NOT display solution)
-    \def\versionText{Diskusjonsforslag}
+    \def\versionText{Discussion}
+    \IfLanguageName{norsk}{\def\versionText{Diskusjonsforslag}}{}
   \else
     %If (NOT display direction) AND (NOT display solution)
     \def\versionText{}
@@ -63,6 +68,7 @@
 \rhead\versionText
 \ifDisplayIdeas
   \lfoot{\color{red}Oppgaveideer er inkludert}
+  \IfLanguageName{norsk}{\lfoot{\color{red}Oppgaveideer er inkludert}}{}
 \fi
 \lhead{\exerciseSetName\ \setNo}
 \lfoot{\currentSubject}
