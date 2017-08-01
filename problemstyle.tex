@@ -23,12 +23,23 @@
 	\ref{pr:\setNo:#1}\relax%
 }
 
+\def\ProblemHeader{Problem}
+\def\SolutionHeader{Solution}
+\def\DiscussionHeader{Discussion}
+\def\IdeaHeader{Idea}
+\IfLanguageName{norsk}{
+	\def\ProblemHeader{Oppgave}
+	\def\SolutionHeader{Løsningsforslag}
+	\def\DiscussionHeader{Diskusjonsmomenter}
+	\def\IdeaHeader{Idé}
+}{}
+
 %%% Style for problems and part problems
 %% bp: begin problem, ep: end problem
 \newcommand{\bp}[1]
 {
 	\Needspace{7\baselineskip} % Won't put it on the page unless there is room
-	{\LARGE{\textbf{Oppgave #1}}}
+	{\LARGE{\textbf{\ProblemHeader\ #1}}}
 	\vspace{\pTitleLeading}
 	\normalsize
 	\begin{addmargin}{\pMargin}
@@ -140,9 +151,11 @@
 	\HideDirections
 }
 
-\NewEnviron{solution}{\ifDisplaySolutions\paragraph{Løsning}\BODY\else\fi}
-\NewEnviron{direction}{\ifDisplayDirections\paragraph{Diskusjon}\BODY\else\fi}
-\NewEnviron{idea}{\ifDisplayIdeas\paragraph{Ideoppgave:}\BODY\fi}
+
+\NewEnviron{solution}{\ifDisplaySolutions\paragraph{\SolutionHeader:}\BODY\else\fi}
+\NewEnviron{direction}{\ifDisplayDirections\paragraph{\DiscussionHeader:}\BODY\else\fi}
+\NewEnviron{idea}{\ifDisplayIdeas\paragraph{\IdeaHeader:}\BODY\fi}
+
 
 %%Clearpage if solution included
 \def\solbreak{\ifDisplayDirections\else\ifDisplaySolutions\clearpage\fi\fi}
