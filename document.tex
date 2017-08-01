@@ -33,7 +33,8 @@
   }{
     \thispagestyle{empty}
     \begin{center}
-      {\Huge\color{red}\textbf{Fil sett/\setNo.tex finnes ikke}}
+        \IfLanguageName{english}{{\Huge\color{red}\textbf{File sett/\setNo.tex not found}}}{}
+        \IfLanguageName{norsk}{{\Huge\color{red}\textbf{Fil sett/\setNo.tex finnes ikke}}}{}
     \end{center}
     \addtocounter{page}{-1}
     \clearpage
