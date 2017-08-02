@@ -58,11 +58,13 @@ Kommandoer, utenom de som er definert i \lstinline{\platformdir/commands.tex}, e
 \begin{tabularx}{\textwidth}{lX}
 	\lstinline{\\bpa}&Begin Problem Automatic (Numbering). Denne setter inn tittel "Oppgave TALL", og lager marger.\\
 	\lstinline{\\ep}&End problem. Denne fjerner margen fra \lstinline{\\bpa}. For hver \lstinline{\\bpa} må det eksistere en \lstinline{\\ep}. Kan også bruke \lstinline{\\epa}\\
+	\lstinline{\\BranchProblem}& Takes a list of filepaths and builds one or more of them based on \lstinline{\\Brances\{\}}. \lstinline{\\Brances\{\}} indexes the list, if it is empty it prints all, if it contains only irrelevant indices notthing is printed. No check on validity of \lstinline{\\Brances\{\}}. \\
 	\lstinline{\\bppa}&Lik som \lstinline{\\bpa}, bare at den legger inn deloppgaver (Begin Part Problem Automatic).\\
 	\lstinline{\\epp}&End part problem. Denne fjerner margen fra \lstinline{\\bppa}. For hver \lstinline{\\bppa} må det eksistere en \lstinline{\\epp}. Kan også bruke \lstinline{\\eppa}\\
 	\lstinline{\\solbreak}&Setter inn ny side dersom kun løsningsforslag er inkludert (altså om \lstinline{\\SolutionManual} er gitt)\\
 	\lstinline{\\tbreak}&Setter inn ny side dersom \lstinline{\\IsTeacherCopy} er gitt (om både løsningsforslag og diskusjonsforslag er med)\\
 	\lstinline{\\probbreak}&Setter in ny side dersom kun oppgavesett bygges. Altså hverken \lstinline{\\IsTeacherCopy} eller \lstinline{\\SolutionManual} er gitt.\\
+
 \end{tabularx}
 Environments:\\
 \begin{tabularx}{\textwidth}{lX}
