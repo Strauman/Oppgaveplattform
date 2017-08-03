@@ -207,9 +207,21 @@
 	\HideDirections
 }
 
-\NewEnviron{solution}{\ifDisplaySolutions\paragraph{\SolutionHeader:}\BODY\else\fi}
-\NewEnviron{direction}{\ifDisplayDirections\paragraph{\DiscussionHeader:}\BODY\else\fi}
-\NewEnviron{idea}{\ifDisplayIdeas\paragraph{\IdeaHeader:}\BODY\fi}
+\NewEnviron{solution}{
+	\ifDisplaySolutions
+		\paragraph{\SolutionHeader:}$ $\BODY
+	\else\fi
+}
+\NewEnviron{direction}{
+	\ifDisplayDirections
+		\paragraph{\DiscussionHeader:}$ $\BODY
+	\else\fi
+}
+\NewEnviron{idea}{
+	\ifDisplayIdeas
+		\paragraph{\IdeaHeader:}$ $\BODY
+	\else\fi
+}
 
 
 %%Clearpage if solution included
