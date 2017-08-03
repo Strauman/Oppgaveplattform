@@ -10,12 +10,18 @@
 \edef\@currentlabel{#1}%
 }
 \makeatother
-\newcounter{problem}
-\newcounter{partproblem}[problem]
-\renewcommand{\thepartproblem}{\alph{partproblem}}
+\newcounter{ProblemCounter}
+\newcounter{PartProblemCounter}[ProblemCounter]
+\renewcommand{\thePartProblemCounter}{\alph{PartProblemCounter}}
+
+\newcounter{CyclicProblemIndexCounter}
 %% Reference problems
-\DeclareRobustCommand{\pplabel}[1]{\refcounter{\theproblem}\label{pr:\setNo:#1}\refcounter{\thepartproblem}\label{pp:\setNo:#1}}
+\DeclareRobustCommand{\pplabel}[1]{
+	\refcounter{\theProblemCounter}\label{pr:\setNo:#1}
+	\refcounter{\thePartProblemCounter}\label{pp:\setNo:#1}
+}
 \let\pptag = \pplabel
+
 \newcommand\ppref[1]{
 	\ref{pr:\setNo:#1}\ref{pp:\setNo:#1}\relax%
 }
@@ -23,6 +29,9 @@
 	\ref{pr:\setNo:#1}\relax%
 }
 
+
+
+%% Define headers used throughout, mostly for language support
 \def\ProblemHeader{Problem}
 \def\SolutionHeader{Solution}
 \def\DiscussionHeader{Discussion}
@@ -111,21 +120,19 @@
 }
 
 
+%% %% %% %% %% %% %% %% %% %% %% %% %% %% %%
+%%   When to show different environments  %%
+%% %% %% %% %% %% %% %% %% %% %% %% %% %% %%
 
-\newcommand{\bppa}[0]{
-	\stepcounter{partproblem}
-	\bpp{\alph{partproblem}}
-}
-\let\epa = \ep %Because I keep writing it
-\let\eppa = \epp %Because I keep writing it
+
 %% Showing and hiding environments
 %% Hidden by default. Show with, preferably in main
 %\displaySolutions
 %\displayDirections
 %\displayIdeas
 
-\def\pSkip{\stepcounter{problem}}
-\def\ppSkip{\stepcounter{partproblem}}
+\def\pSkip{\stepcounter{ProblemCounter}}
+\def\ppSkip{\stepcounter{PartProblemCounter}}
 
 \def\bex{}
 \def\eex{}
@@ -170,5 +177,5 @@
 \let\ShowTOC = \showtoctrue
 
 \newif\ifResetProblemCounterOnSet
-\let\ResetProblemCounterOnSet=\ResetProblemCounterOnSettrue
+\let\ResetProblemCounterOnSet = \ResetProblemCounterOnSettrue
 \let\KeepProblemCounterOnSet = \ResetProblemCounterOnSetfalse
