@@ -15,9 +15,9 @@
 \fi
 }
 \newcommand{\buildset}[0]{
-  \IfFileExists{sett/\setNo}{
+  \IfFileExists{\ProblemSetDirectory\setNo}{
     \ifResetProblemCounterOnSet
-    \setcounter{problem}{0}
+    \setcounter{ProblemCounter}{0}
     \fi
     \ifBlankBeforeNew
       \IfInteger{\setNos}{}{%Building more than one set
@@ -27,14 +27,14 @@
     \fi
     %% uitTitle defined in pagestyle
     \uitTitle
-    \input{sett/\setNo}
+    \input{\ProblemSetDirectory\setNo}
     \clearpage
 
   }{
     \thispagestyle{empty}
     \begin{center}
-        \IfLanguageName{english}{{\Huge\color{red}\textbf{File sett/\setNo.tex not found}}}{}
-        \IfLanguageName{norsk}{{\Huge\color{red}\textbf{Fil sett/\setNo.tex finnes ikke}}}{}
+        \IfLanguageName{english}{{\Huge\color{red}\textbf{File \ProblemSetDirectory\setNo.tex not found}}}{}
+        \IfLanguageName{norsk}{{\Huge\color{red}\textbf{Fil \ProblemSetDirectory\setNo.tex finnes ikke}}}{}
     \end{center}
     \addtocounter{page}{-1}
     \clearpage
