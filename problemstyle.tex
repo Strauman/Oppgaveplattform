@@ -43,20 +43,53 @@
 	\def\IdeaHeader{Idé}
 }{}
 
+
+%% %% %% %% %% %% %% %% %% %% %% %% %% %% %%
+%%     Definition of problem commands     %%
+%% %% %% %% %% %% %% %% %% %% %% %% %% %% %%
+
+
 %%% Style for problems and part problems
-%% bp: begin problem, ep: end problem
-\newcommand{\bp}[1]
-{
+%% bp: begin problem, ep: end proble
+
+%% Begin custom problem, that is give it a custom name
+\newcommand{\bcp}[1]{
 	\Needspace{7\baselineskip} % Won't put it on the page unless there is room
-	{\LARGE{\textbf{\ProblemHeader\ #1}}}
+	{\large{\textbf{#1}}}
 	\vspace{\pTitleLeading}
 	\normalsize
 	\begin{addmargin}{\pMargin}
 }
+
+%% Old definition of begin problem for compatibility
+\newcommand{\bp}[1]{
+	\bcp{\ProblemHeader\ #1}
+}
+
+%% Begin automagically numbered problem
+\newcommand{\bnp}{
+	\stepcounter{ProblemCounter}
+	\bcp{\ProblemHeader\ \theProblemCounter}
+}
+%% Create alias for compability
+\let\bpa = \bnp
+
+%% Begin mandatory problem
+%% Uses /ProblemHeader and \ProblemCounter
+%% and adds a \star to mark a problem as mandatory
+\newcommand{\bmp}[1]{
+	\stepcounter{ProblemCounter}
+	\bcp{\ProblemHeader\ \theProblemCounter $(\star)$}
+}
+
+%% Ends problem
+%% Commonly used for all commands to begin one
 \newcommand{\ep}{
 	\end{addmargin}
 	\vspace{2em}
 }
+\let\epa = \ep %Because I keep writing it // Convenience alias
+
 
 %% bpp: begin part problem. Argument is part problem name
 %% epp: end part problem
@@ -157,7 +190,6 @@
 	\DisplaySolutions
 	\HideDirections
 }
-
 
 \NewEnviron{solution}{\ifDisplaySolutions\paragraph{\SolutionHeader:}\BODY\else\fi}
 \NewEnviron{direction}{\ifDisplayDirections\paragraph{\DiscussionHeader:}\BODY\else\fi}
