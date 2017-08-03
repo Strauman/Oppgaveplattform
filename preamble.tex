@@ -1,5 +1,10 @@
 %!TEX root = ../main.tex
-\def\hookdir{local}
+\makeatletter
+\@ifundefined{hookdir}{
+    \def\hookdir{local}
+}{}
+\makeatother
+
 \input{\platformdir/logic}
 
 \input{\platformdir/packages}
