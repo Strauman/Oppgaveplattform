@@ -103,44 +103,60 @@
 \end{addmargin}
 }
 
+\newcommand{\bppa}[0]{
+	\stepcounter{PartProblemCounter}
+	\bpp{\alph{PartProblemCounter}}
+}
+\let\eppa = \epp %Because I keep writing it // Convenience alias
 
 
-%% Automatic problem numbering
-\newcommand{\bpa}[0]{
-\stepcounter{problem}
-\bp{\theproblem}
+%% %% %% %% %% %% %% %% %% %% %% %% %% %% %%
+%%  Definition of input problem commands  %%
+%% %% %% %% %% %% %% %% %% %% %% %% %% %% %%
+
+
+%% Takes a path relative to builded main
+%% Inputs the file within a problem
+%% Use part problem within inputed file
+\newcommand{\inputProblem}[1]{
+	\bnp
+	\input{#1}
+	\ep
 }
 
-\newif\ifLabelBranches
-\let\LabelBranches = \LabelBranchestrue
+\newif\ifLabelCyclicProblems
+\let\LabelCyclicProblems = \LabelCyclictrue
 
-%% Automatic problem numbering with branching
+%% Automatic problem numbering with cyclic branching
 %% Takes a list of {path1,...,pathN}
 %% Outcome is governed by \BranchNos, set by \Branches{},
 %% which indexes the argument list. If \BranchNos is empty,
 %% all indexes are printed. If \BranchNos is not empty but
 %% does not contain any relevant index for the input list,
 %% nothing is printed.
-\newcommand{\branchProblem}[1]{
-	\stepcounter{problem}
-	\newcounter{BranchIndexCounter}
 
-	\ifx\branchNos\empty
+\newcommand{\inputCyclicProblem}[1]{
+	\stepcounter{ProblemCounter}
+	\setcounter{CyclicProblemIndexCounter}{0}
+
+	\ifx\cycleNos\empty
 		\foreach \path in #1{
-			\stepcounter{BranchIndexCounter}
-			\bp{\theproblem\ - Branch \Alph{BranchIndexCounter}}
+			\stepcounter{CyclicProblemIndexCounter}
+			\bcp{\ProblemHeader\ \theProblemCounter\ -
+				 Cycle \Alph{CyclicProblemIndexCounter}}
 			\input{\path}
 			\ep
 		}
 	\else
 		\foreach \path in #1{
-			\stepcounter{BranchIndexCounter}
-			\foreach \branchNo in \branchNos{
-				\ifnumcomp{\branchNo}{=}{\theBranchIndexCounter}{
-					\ifLabelBranches
-						\bp{\theproblem\ - Branch \Alph{BranchIndexCounter}}
+			\stepcounter{CyclicProblemIndexCounter}
+			\foreach \cycleNo in \cycleNos{
+				\ifnumcomp{\cycleNo}{=}{\theCyclicProblemIndexCounter}{
+					\ifLabelCyclicProblems
+						\bcp{\ProblemHeader\ \theProblemCounter\ -
+							 Cycle \Alph{CyclicProblemIndexCounter}}
 					\else
-						\bp{\theproblem}
+						\bcp{\ProblemHeader\ \theProblemCounter}
 					\fi
 					\input{\path}
 					\ep
