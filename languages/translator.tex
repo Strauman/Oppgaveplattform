@@ -1,4 +1,9 @@
 %!TEX root = ../../main.tex
-\newcommand{\tr}[2]{% Translates: \tr{norsk}{what}
-  \foreignlanguage{#1}{#2}
+\makeatletter
+\def\tr#1{% Translates: \tr{strname}
+  \csname locale@#1 \endcsname
 }
+\newcommand{\setstring}[2]{%\translate{stringname}{value}
+ \expandafter\csname locale@#1 \endcsname #2
+}
+\makeatother
