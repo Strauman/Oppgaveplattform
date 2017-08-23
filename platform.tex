@@ -5,7 +5,11 @@
   \IfFileExists{config.tex}{
     \input{config}
   }{
-    \input{\platformdir/config}
+  \IfFileExists{config-sample.tex}{
+    \input{config-sample}
+  }{
+    \input{\platformdir/config-sample}
+    }
   }
 }
 \input{\platformdir/languages/translator}
