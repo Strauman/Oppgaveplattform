@@ -14,11 +14,17 @@
 \newif\ifHideFootLine
 
 \newif\ifBlankBeforeNew
+\newif\ifBibliography
+
 
 \let\BlankBeforeNew = \BlankBeforeNewtrue
 \let\BuildOverview = \BuildOverviewtrue
 \let\BuildReadme = \BuildReadmetrue
 \let\HideFootLine = \HideFootLinetrue
+\newcommand{\Bibliografi}[1]{
+\Bibliographytrue
+\def\bibliographyFile{#1}
+}
 \def\frontpage{problemset}
 \newcommand{\Forside}[1]{\def\frontpage{#1}}
 \newcommand{\Fagkode}[1]{\def\courseCode{#1}}
