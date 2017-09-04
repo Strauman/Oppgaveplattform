@@ -48,8 +48,7 @@ Dette er kommandoene som er tilgjengelige:\\[2em]
 	\lstinline{\\BlankBeforeNew}&Lager en blank side imellom oppgavesettene dersom flere oppgavesett bygges.\\
 	\lstinline{\\Setlang}&Sett språk. Støtter norsk og engelsk:f.eks. \lstinline{\\Setlang{english}}. Norsk er standard.\\
 	\lstinline{\\Forside}&Velg forside. Se seksjon under.\\
-	\lstinline{\\Forfatter}&Brukes til å sette navn på f.eks. forside.
-
+	\lstinline{\\Forfatter}&Brukes til å sette navn på f.eks. forside.\\
 \end{tabularx}
 I tillegg til \lstinline{config.tex} kan en lage \lstinline{myconfig.tex} som overstyrer. Dette for beleilighet ved samarbeid i et SVM som for eksempel git.\\
 \textbf{OBS!} Tittel vises ikke i filer som ikke har et tall som filnavn!
@@ -57,7 +56,6 @@ I tillegg til \lstinline{config.tex} kan en lage \lstinline{myconfig.tex} som ov
 \section*{Egen forside}
 I \lstinline{\hookdir} (\lstinline{local/} som standard) lag en mappe \lstinline{local/titles/someFrontPage.tex}.
 I \lstinline{config.tex} bruk kommandoen \lstinline|\Forside{someFrontPage}|.
-To forsider støttes pr. nå: \lstinline{problemset} (standard) og \lstinline{handin}.
 \section*{Kommandoer og environments til bruk i settene}
 
 Kommandoer, utenom de som er definert i \lstinline{\platformdir/commands.tex}, er følgende spesielle kommandoer definert\\
@@ -89,7 +87,12 @@ Environments:\\
 	\lstinline{\\ppref}&Tar et argument som er label i fra \lstinline{\\pplabel}. Denne printer så ut oppgave og deloppgave som \lstinline{\\pplabel} med tilsvaren label var kalt i. F.eks 1a.\\
 	\lstinline{\\pref}&Lik som \lstinline{\\ppref} med bare at den ikke printer deloppgave, men kun oppgavenummer. F.eks. 1.\\
 	\lstinline{\\pSkip}&Hopp over et oppgave-tall.\\
-	\lstinline{\\ppSkip}&Hopp over et deloppgave-`tall'
+	\lstinline{\\ppSkip}&Hopp over et deloppgave-`tall'\\
+	\lstinline{\\configcommand}&Tar to argumenter: setter og getter. For eksempel \lstinline{\\configcommand\{Fakultet\}\{facultyname\}} lager to kommandoer: om du nå skriver \lstinline|\\Fakultet\{IFT\}| vil \lstinline|\\facultyname| printe IFT.\\
+	\lstinline{\\exerciseSetName}&Printer det som er gitt\\
+	\lstinline{\\courseTitle}&Printer det som er gitt i config \lstinline{\\Fagtittel}\\
+	\lstinline{\\courseCode}&Printer det som er gitt i config \lstinline{\\Fagkode}\\
+	\lstinline{\\setNo}&Navnet på nåværende fil (uten \lstinline{.tex})
 \end{tabularx}
 Environments:\\
 \begin{tabularx}{\textwidth}{lX}
