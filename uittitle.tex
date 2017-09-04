@@ -1,13 +1,10 @@
 %!TEX root = ../main.tex
 \newcommand{\uitTitle}{
-  \IfInteger{\setNo}{
-    \ifDisplayTitle
-      \begin{center}
-        \includegraphics[scale=0.16]{\platformdir/img/logoUit}\\
-        {\huge{\textbf{\exerciseSetName\ \setNo \\\courseCode\ - \courseTitle\\}}}{\large\versionText}
-      \end{center}
-      \fi
-    }{}%END ifInteger
+  \IfFileExists{\hookdir/titles/\frontpage.tex}{
+    \input{\hookdir/titles/\frontpage}
+  }{
+    \input{\platformdir/titles/\frontpage}
+  }
 }
 \def\currentSubject{}
 \newcommand\subject[1]{
