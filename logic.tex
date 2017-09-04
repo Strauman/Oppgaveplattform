@@ -1,6 +1,9 @@
 %!TEX root = ../main.tex
 \def\inputx#1{\IfFileExists{#1.tex}{\input{#1}}{}}
 \def\inputhook#1{\IfFileExists{\hookdir/#1.tex}{\input{\hookdir/#1}}{}}
+\def\hookOverrides#1{
+  \IfFileExists{\hookdir/#1.tex}{\input{\hookdir/#1}}{\input{\platformdir/#1}}
+}
 \makeatletter
 \newcommand{\betterif}[1]{
 \count@ \escapechar \escapechar \m@ne \let #1\iffalse \@if #1\iftrue \@if #1\iffalse \escapechar \count@
@@ -8,4 +11,9 @@
 }
 % \testr\abc
 % \yo
+\newcommand{\configcommand}[2]{ %% (setter (frontname),getter (backname))
+  \expandafter\def\csname #1\endcsname##1{\expandafter \def\csname #2\endcsname{##1}}
+}
+
+
 \makeatother

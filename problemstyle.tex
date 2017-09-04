@@ -49,13 +49,13 @@
 
 %% Old definition of begin problem for compatibility
 \newcommand{\bp}[1]{
-	\bcp{\ProblemHeader\ #1}
+	\bcp{\tr{ProblemHeader}\ #1}
 }
 
 %% Begin automagically numbered problem
 \newcommand{\bnp}{
 	\stepcounter{ProblemCounter}
-	\bcp{\ProblemHeader\ \theProblemCounter}
+	\bcp{\tr{ProblemHeader}\ \theProblemCounter}
 }
 %% Create alias for compability
 \let\bpa = \bnp
@@ -65,7 +65,7 @@
 %% and adds a \star to mark a problem as mandatory
 \newcommand{\bmp}[1]{
 	\stepcounter{ProblemCounter}
-	\bcp{\ProblemHeader\ \theProblemCounter $(\star)$}
+	\bcp{\tr{ProblemHeader}\ \theProblemCounter $(\star)$}
 }
 
 %% Ends problem
@@ -128,7 +128,7 @@
 	\ifx\cycleNos\empty
 		\foreach \path in #1{
 			\stepcounter{CyclicProblemIndexCounter}
-			\bcp{\ProblemHeader\ \theProblemCounter\ -
+			\bcp{\tr{ProblemHeader}\ \theProblemCounter\ -
 				 Cycle \Alph{CyclicProblemIndexCounter}}
 			\input{\path}
 			\ep
@@ -139,10 +139,10 @@
 			\foreach \cycleNo in \cycleNos{
 				\ifnumcomp{\cycleNo}{=}{\theCyclicProblemIndexCounter}{
 					\ifLabelCyclicProblems
-						\bcp{\ProblemHeader\ \theProblemCounter\ -
+						\bcp{\tr{ProblemHeader}\ \theProblemCounter\ -
 							 Cycle \Alph{CyclicProblemIndexCounter}}
 					\else
-						\bcp{\ProblemHeader\ \theProblemCounter}
+						\bcp{\tr{ProblemHeader}\ \theProblemCounter}
 					\fi
 					\input{\path}
 					\ep
