@@ -1,10 +1,12 @@
 %!TEX root = ../main.tex
 \newcommand{\uitTitle}{
-  \IfFileExists{\hookdir/titles/\frontpage.tex}{
-    \input{\hookdir/titles/\frontpage}
-  }{
-    \input{\platformdir/titles/\frontpage}
-  }
+  \ifDisplayTitle
+    \IfFileExists{\hookdir/titles/\frontpage.tex}{
+      \input{\hookdir/titles/\frontpage}
+    }{
+      \input{\platformdir/titles/\frontpage}
+    }
+  \fi
 }
 \def\currentSubject{}
 \newcommand\subject[1]{
