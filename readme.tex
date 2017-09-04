@@ -92,12 +92,16 @@ Environments:\\
 	\lstinline{\\exerciseSetName}&Printer det som er gitt\\
 	\lstinline{\\courseTitle}&Printer det som er gitt i config \lstinline{\\Fagtittel}\\
 	\lstinline{\\courseCode}&Printer det som er gitt i config \lstinline{\\Fagkode}\\
-	\lstinline{\\setNo}&Navnet på nåværende fil (uten \lstinline{.tex})
+	\lstinline{\\setNo}&Navnet på nåværende fil (uten \lstinline{.tex})\\
+	\lstinline{\\inputhook}&TODO (og relatert)
 \end{tabularx}
 Environments:\\
 \begin{tabularx}{\textwidth}{lX}
 	\lstinline{solution} og \lstinline{direction} & Alt i dissen environmentene vises kun dersom \lstinline{\\IsTeacherCopy} er på. \lstinline{direction} er ment som en peker til hva vi har tenkt når vi lagde oppgaven, og \lstinline{solution} er vårt løsningsforslag
-\end{tabularx}\section*{Lib-mappen}
+\end{tabularx}
+\subsection*{Locale}
+Todo: Skriv om \lstinline{\setstring}, \lstinline{\tr} og hooks derunder
+\section*{Lib-mappen}
 "Logikken" og tex-filer ligger i \lstinline|\platformdir/|-mappen.
 \lstinline|\platformdir/codestyle| bestemmer hvordan \lstinline|lstlistings| skal se ut. \lstinline|\platformdir/commands| inneholder kommandodefinisjoner, \lstinline|document| er logikken bak hvordan oppgavesett er implementert
 \clearpage
