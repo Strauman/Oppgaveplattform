@@ -6,31 +6,18 @@
 \def\cycleNos{}
 \def\courseCode{REA-0100}
 \def\courseTitle{Read the README.pdf}
-\def\exerciseSetName{Problem Set}
-\IfLanguageName{norsk}{\def\exerciseSetName{Oppgavesett}}{}
-\newif\ifBuildIntent
-\newif\ifBuildOverview
-\newif\ifBuildReadme
-\newif\ifHideFootLine
+\def\exerciseSetName{\tr{exerciseSetName}}
 
-\newif\ifBlankBeforeNew
+\newif\ifBuildIntent
 \newif\ifBibliography
 
-
-\let\BlankBeforeNew = \BlankBeforeNewtrue
-\let\BuildOverview = \BuildOverviewtrue
-\let\BuildReadme = \BuildReadmetrue
-\let\HideFootLine = \HideFootLinetrue
 \newcommand{\Bibliografi}[1]{
 \Bibliographytrue
 \def\bibliographyFile{#1}
 }
 \def\frontpage{problemset}
-\newcommand{\Forside}[1]{\def\frontpage{#1}}
-\newcommand{\Fagkode}[1]{\def\courseCode{#1}}
-\newcommand{\Fagtittel}[1]{\def\courseTitle{#1}}
-\newcommand{\Oppgavenavn}[1]{\def\exerciseSetName{#1}}
-\newcommand{\Sets}[1]{\def\setNos{#1}}
+
+%TODO: Remove this? Is this used anywhere?
 \newcommand{\Cycles}[1]{\def\cycleNos{#1}}
 
 %% Headers and footers
@@ -84,8 +71,6 @@
 %%% Front page %%%
 \setlength{\parindent}{0pt}
 
-\betterif\ifDisplayTitle
-\let\DisplayTitle = \DisplayTitletrue
-\let\HideTitle = \DisplayTitlefalse
+
 
 \geometry{paper=a4paper, bottom=3cm, top=3cm, footnotesep=3cm}

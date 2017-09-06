@@ -6,11 +6,29 @@
 }
 \makeatletter
 \newcommand{\betterif}[1]{
-\count@ \escapechar \escapechar \m@ne \let #1\iffalse \@if #1\iftrue \@if #1\iffalse \escapechar \count@
-% \count@ \escapechar \escapechar \m@ne \let #1\iftrue \escapechar \count@
+  \expandafter\newif\csname if#1\endcsname
+  \expandafter\let\csname #1\expandafter\endcsname\csname#1true\endcsname
+  % Example \betterif{Hello}
+  % \newif\ifHello
+  % \let\Hello\Hellotrue
 }
-% \testr\abc
-% \yo
+\newcommand{\cbetterif}[2]{
+  \expandafter\newif\csname if#1\endcsname
+  \expandafter\let\csname #2\expandafter\endcsname\csname#1true\endcsname
+  % Example \cbetterif{Hello}{World}
+  % \newif\ifHello
+  % \let\World\Hellotrue
+}
+\newcommand{\cibetterif}[3]{  %%<- defaults to true. (ifname, truecommand, falsecommand)
+  \expandafter\newif\csname if#1\endcsname
+  \expandafter\let\csname #2\expandafter\endcsname\csname#1true\endcsname
+  \expandafter\let\csname #3\expandafter\endcsname\csname#1false\endcsname
+  \csname#1true\endcsname
+  % Example \ibetterif{DisplayStuff}{HideStuff} equivalent to:
+  % \newif\ifDisplayStuff
+  % \let\HideStuff\DisplayStufffalse
+  % \DisplayStufffalse
+}
 \newcommand{\configcommand}[2]{ %% (setter (frontname),getter (backname))
   \expandafter\def\csname #1\endcsname##1{\expandafter \def\csname #2\endcsname{##1}}
 }
