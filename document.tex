@@ -15,29 +15,39 @@
 \fi
 }
 \newcommand{\buildset}[0]{
-  \IfFileExists{\ProblemSetDirectory\setNo}{
-    \ifResetProblemCounterOnSet
-    \setcounter{ProblemCounter}{0}
-    \fi
-    \ifBlankBeforeNew
-      \IfInteger{\setNos}{}{%Building more than one set
-        %Building an actual set
-        \IfInteger{\setNo}{\null\thispagestyle{empty}\addtocounter{page}{-1}\newpage}{}
+  \ifDoKnittr
+    \IfFileExists{\ProblemSetDirectory\setNo.Rnw}{
+      \immediate\write18{cd \ProblemSetDirectory; R -e 'library(knitr);knit("\setNo.Rnw")'}
+      \IfFileExists{\ProblemSetDirectory\setNo}{}{
+        \newpage
+        {\Huge\color{red}Something wen wrong when knitring \setNo.Rnw}
+        \newpage
       }
-    \fi
-    %% uitTitle defined in pagestyle
-    \uitTitle
-    \input{\ProblemSetDirectory\setNo}
-    \clearpage
+    }{}
+  \fi
+    \IfFileExists{\ProblemSetDirectory\setNo}{
+      \ifResetProblemCounterOnSet
+      \setcounter{ProblemCounter}{0}
+      \fi
+      \ifBlankBeforeNew
+        \IfInteger{\setNos}{}{%Building more than one set
+          %Building an actual set
+          \IfInteger{\setNo}{\null\thispagestyle{empty}\addtocounter{page}{-1}\newpage}{}
+        }
+      \fi
+      %% uitTitle defined in pagestyle
+      \uitTitle
+      \input{\ProblemSetDirectory\setNo}
+      \clearpage
 
-  }{
-    \thispagestyle{empty}
-    \begin{center}
-        \tr{setnotfound}
-    \end{center}
-    \addtocounter{page}{-1}
-    \clearpage
-  }
+    }{
+      \thispagestyle{empty}
+      \begin{center}
+          \tr{setnotfound}
+      \end{center}
+      \addtocounter{page}{-1}
+      \clearpage
+    }
 
 }
 \newcommand{\readTheReadme}[0]{
