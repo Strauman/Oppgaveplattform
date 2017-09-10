@@ -1,4 +1,5 @@
 %!TEX root = ../main.tex
+\makeatletter
 \newcommand{\predocument}[0]{
 \ifshowtoc
 \ifGenerateTOC
@@ -14,40 +15,54 @@
   \clearpage
 \fi
 }
+\newcommand{\includeset}[1]{
+  \ifResetProblemCounterOnSet
+  \setcounter{ProblemCounter}{0}
+  \fi
+  \ifBlankBeforeNew
+    \IfInteger{\setNos}{}{%Building more than one set
+      %Building an actual set
+      \IfInteger{\setNo}{\null\thispagestyle{empty}\addtocounter{page}{-1}\newpage}{}
+    }
+  \fi
+  %% uitTitle defined in pagestyle
+  \uitTitle
+  \input{#1}
+  \clearpage
+}
+\newcommand{\setnotfound}{
+  \thispagestyle{empty}
+  \begin{center}
+      \tr{setnotfound}
+  \end{center}
+  \addtocounter{page}{-1}
+  \clearpage
+}
 \newcommand{\buildset}[0]{
   \ifDoKnitr
+  \ifExecKnitr
     \IfFileExists{\ProblemSetDirectory\setNo.Rnw}{
-      \immediate\write18{cd \ProblemSetDirectory; R -e 'library(knitr);knit("\setNo.Rnw")'}
-      \IfFileExists{\ProblemSetDirectory\setNo}{}{
+      \immediate\write18{mkdir \ProblemSetDirectory\knitrOutputDir}
+      \immediate\write18{R -e 'library(knitr);knit("\ProblemSetDirectory\setNo.Rnw", "\ProblemSetDirectory\knitrOutputDir/\setNo.tex")' >> knitlog.log}
+      \IfFileExists{\ProblemSetDirectory\knitrOutputDir/\setNo}{}{
         \newpage
-        {\Huge\color{red}Something wen wrong when knitring \setNo.Rnw}
+        {\Huge\color{red}Something went wrong when knitring \setNo.Rnw, since \ProblemSetDirectory\knitrOutputDir/\setNo doesn't exist}
         \newpage
       }
     }{}
   \fi
-    \IfFileExists{\ProblemSetDirectory\setNo}{
-      \ifResetProblemCounterOnSet
-      \setcounter{ProblemCounter}{0}
-      \fi
-      \ifBlankBeforeNew
-        \IfInteger{\setNos}{}{%Building more than one set
-          %Building an actual set
-          \IfInteger{\setNo}{\null\thispagestyle{empty}\addtocounter{page}{-1}\newpage}{}
-        }
-      \fi
-      %% uitTitle defined in pagestyle
-      \uitTitle
-      \input{\ProblemSetDirectory\setNo}
-      \clearpage
-
+  % \fi
+  \def\@knitrSetDir{\ProblemSetDirectory/\knitrOutputDir/\setNo}
+  \def\@texSetDir{\ProblemSetDirectory/\setNo}
+  \IfFileExists{\@knitrSetDir}{
+    \includeset{\@knitrSetDir}
+  }{
+    \IfFileExists{\@texSetDir}{
+      \includeset{\@texSetDir}
     }{
-      \thispagestyle{empty}
-      \begin{center}
-          \tr{setnotfound}
-      \end{center}
-      \addtocounter{page}{-1}
-      \clearpage
+      \setnotfound
     }
+  }
 
 }
 \newcommand{\readTheReadme}[0]{
@@ -61,6 +76,11 @@
   \includepdf[pages=-, pagecommand={}]{\platformdir/README.pdf}
   % \end{center}
 }
+\makeatother
+\ifDoKnitr\ifExecKnitr
+  \immediate\write18{echo "" > knitlog.log}
+\fi
+\fi
 \begin{document}
   \ifBuildReadme\readTheReadme\fi
   \ifx\setNos\empty

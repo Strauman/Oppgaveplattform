@@ -50,6 +50,7 @@
 %% Old definition of begin problem for compatibility
 \newcommand{\bp}[1]{
 	\bcp{\tr{ProblemHeader}\ #1}
+	% \setcounter{ProblemCounter}{#1}
 }
 
 %% Begin automagically numbered problem
@@ -65,7 +66,7 @@
 %% and adds a \star to mark a problem as mandatory
 \newcommand{\bmp}[1]{
 	\stepcounter{ProblemCounter}
-	\bcp{\tr{ProblemHeader}\ \theProblemCounter $(\star)$}
+	\bcp{\tr{ProblemHeader}\ \theProblemCounter $(\star)$}%TODO: Custom mark?
 }
 
 %% Ends problem
