@@ -15,7 +15,7 @@
 \fi
 }
 \newcommand{\buildset}[0]{
-  \ifDoKnittr
+  \ifDoKnitr
     \IfFileExists{\ProblemSetDirectory\setNo.Rnw}{
       \immediate\write18{cd \ProblemSetDirectory; R -e 'library(knitr);knit("\setNo.Rnw")'}
       \IfFileExists{\ProblemSetDirectory\setNo}{}{

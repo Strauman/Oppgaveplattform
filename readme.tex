@@ -50,7 +50,8 @@ Dette er kommandoene som er tilgjengelige:\\[2em]
 	\lstinline{\\Forside}&Velg forside. Se seksjon under.\\
 	\lstinline{\\Forfatter}&Brukes til å sette navn på f.eks. forside.\\
 	\lstinline{\\Bibliografi}&Tar et filnavn til en \lstinline{.bib}-fil (uten \lstinline{.bib}).\\
-	\lstinline{\\BibliografiStil}&Setter \lstinline{\\bibliographystyle}. Standard er \lstinline{unsrt}
+	\lstinline{\\BibliografiStil}&Setter \lstinline{\\bibliographystyle}. Standard er \lstinline{unsrt}\\
+	\lstinline{\\DoKnitr}&Aktiverer Knitr og søk.
 \end{tabularx}
 I tillegg til \lstinline{config.tex} kan en lage \lstinline{myconfig.tex} som overstyrer. Dette for beleilighet ved samarbeid i et SVM som for eksempel git.\\
 \textbf{OBS!} Tittel vises ikke i filer som ikke har et tall som filnavn!
@@ -58,6 +59,9 @@ I tillegg til \lstinline{config.tex} kan en lage \lstinline{myconfig.tex} som ov
 \section*{Egen forside}
 I \lstinline{\hookdir} (\lstinline{local/} som standard) lag en mappe \lstinline{local/titles/someFrontPage.tex}.
 I \lstinline{config.tex} bruk kommandoen \lstinline|\Forside{someFrontPage}|.
+\section*{Knitr-støtte}
+I \lstinline{sett/}-mappen, kan man lage \lstinline{.Rnw}-filer. Når tex bygger, kjører den kommandolinje for å kompilere \lstinline{.Rnw}-filen til \lstinline{.tex}.
+Dette forutsetter at kommandoen \lstinline{\DoKnitr} er gitt i config-filen.
 \section*{Kommandoer og environments til bruk i settene}
 
 Kommandoer, utenom de som er definert i \lstinline{\platformdir/commands.tex}, er følgende spesielle kommandoer definert\\
