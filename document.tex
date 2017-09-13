@@ -43,7 +43,7 @@
   \ifExecKnitr
     \IfFileExists{\ProblemSetDirectory\setNo.Rnw}{
       \immediate\write18{mkdir \ProblemSetDirectory\knitrOutputDir}
-      \immediate\write18{R -e 'library(knitr);knit("\ProblemSetDirectory\setNo.Rnw", "\ProblemSetDirectory\knitrOutputDir/\setNo.tex")' >> knitlog.log}
+      \immediate\write18{R -e 'library("knitr");knit("\ProblemSetDirectory\setNo.Rnw", "\ProblemSetDirectory\knitrOutputDir/\setNo.tex")' >> knitlog.log}
       \IfFileExists{\ProblemSetDirectory\knitrOutputDir/\setNo}{}{
         \newpage
         {\Huge\color{red}Something went wrong when knitring \setNo.Rnw, since \ProblemSetDirectory\knitrOutputDir/\setNo doesn't exist}

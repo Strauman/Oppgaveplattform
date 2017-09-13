@@ -1,0 +1,13 @@
+%!TEX root = ../main.tex
+\newcommand{\includeRnw}[1]{
+\ifDoKnitr
+  \ifExecKnitr
+    \immediate\write18{R -e 'library("knitr");knit("\ProblemSetDirectory\knitrInputDir/#1.Rnw", "\ProblemSetDirectory\knitrOutputDir/#1knitted.tex")' >> knitlog.log}
+  \fi
+\fi
+\IfFileExists{\ProblemSetDirectory\knitrOutputDir/#1knitted}{
+    \input{\ProblemSetDirectory\knitrOutputDir/#1knitted.tex}
+  }{
+    Couldn't find knitted
+  }
+}
