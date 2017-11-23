@@ -1,3 +1,4 @@
+%!TEX root = ../main.tex
 %%%%%% Configure in config.tex %%%%%%%%
 \documentclass{article}
 \input{\platformdir/preamble}
@@ -12,7 +13,9 @@
     }
   }
 }
+
 \ifDoKnitr
+% \input{\platformdir/knitrhead}
 \hookOverrides{knitrhead}
 \fi
 \input{\platformdir/languages/translator}

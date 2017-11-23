@@ -1,13 +1,38 @@
 %!TEX root = ../main.tex
-\newcommand{\includeRnw}[1]{
-\ifDoKnitr
-  \ifExecKnitr
-    \immediate\write18{R -e 'library("knitr");knit("\ProblemSetDirectory\knitrInputDir/\setNo/#1.Rnw", "\ProblemSetDirectory\knitrOutputDir/#1knitted.tex")' >> knitlog.log}
-  \fi
-\fi
+\makeatletter
+\newcommand{\@executeKnitr}[1]{
+  \immediate\write18{R -e 'library("knitr");knit("\ProblemSetDirectory\knitrInputDir/\setNo/#1.Rnw", "\ProblemSetDirectory\knitrOutputDir/#1knitted.tex")' >> knitlog.log}
+}
+\newcommand{\@includeKnitted}[1]{
 \IfFileExists{\ProblemSetDirectory\knitrOutputDir/#1knitted}{
     \input{\ProblemSetDirectory\knitrOutputDir/#1knitted.tex}
   }{
     Couldn't find knitted
   }
 }
+
+\newcommand{\includeRnw}[2][\@nil]{
+  \def\@optarg{#1}%
+  \def\@overrider{f}
+  \ifDoKnitr
+    \ifExecKnitr
+        \@executeKnitr{#2}
+      \else
+        \ifx\@optarg\@overrider
+          \@executeKnitr{#2}
+        \fi
+    \fi
+  \fi
+  \ifDoKnitr
+    \@includeKnitted{#2}
+  \fi
+}
+\newcommand{\includeSweave}[1]{
+  \ifDoKnitr
+    \ifExecKnitr
+      \immediate\write18{R -e 'library("knitr");Sweave2knitr("\ProblemSetDirectory\knitrInputDir/\setNo/#1.Rnw")' >> sweave.log}
+      \includeRnw{#1-knitr}
+    \fi
+  \fi
+}
+\makeatother
