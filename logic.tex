@@ -4,6 +4,8 @@
 \def\hookOverrides#1{
   \IfFileExists{\hookdir/#1.tex}{\input{\hookdir/#1}}{\input{\platformdir/#1}}
 }
+
+
 \makeatletter
 \newcommand{\betterif}[1]{
   \expandafter\newif\csname if#1\endcsname
@@ -31,6 +33,34 @@
 }
 \newcommand{\configcommand}[2]{ %% (setter (frontname),getter (backname))
   \expandafter\def\csname #1\endcsname##1{\expandafter \def\csname #2\endcsname{##1}}
+}
+\newcommand{\AtBeginSet}[2]{%\AtBeginSet{setNo}{Action}
+  \ifcsname setBeginHook@#1\endcsname\else
+    \expandafter\def\csname setBeginHook@#1\endcsname{ }
+  \fi
+  \expandafter\g@addto@macro\csname setBeginHook@#1\endcsname{#2}
+}
+
+\newcommand{\AtBeginSets}[2]{%\AtBeginSets{setNo1, setNo2,...}{action(s)}
+  \def\forSets{#1}
+  \foreach \forSet [count=\fscount] in \forSets{
+    \AtBeginSet{\forSet}{#2}
+  }
+}
+
+\newcommand{\Queue}[2]{%\Queue{queName}{action}. To trigger a Queue name run \triggerQueue{queName}
+\ifcsname plat@Queue@#1\endcsname
+  \expandafter\g@addto@macro\csname plat@Queue@#1\endcsname{#2}
+\else
+  \expandafter\def\csname plat@Queue@#1\endcsname{#2}
+\fi
+}
+\newcommand{\triggerQueue}[1]{
+  \ifcsname plat@Queue@#1@\setNo\endcsname
+    \csname plat@Queue@#1@\setNo\endcsname
+  \else
+    Tried to trigger queue #1, but doesn't exist
+  \fi
 }
 
 
