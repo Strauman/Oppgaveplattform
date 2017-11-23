@@ -99,7 +99,8 @@ Environments:\\
 	\lstinline{\\courseTitle}&Printer det som er gitt i config \lstinline{\\Fagtittel}\\
 	\lstinline{\\courseCode}&Printer det som er gitt i config \lstinline{\\Fagkode}\\
 	\lstinline{\\setNo}&Navnet på nåværende fil (uten \lstinline{.tex})\\
-	\lstinline{\\inputhook}&TODO (og relatert)
+	\lstinline{\\inputhook}&TODO (og relatert)\\
+	\lstinline{\\AtBeginSet}&Lik \lstinline{\\AtBeginDocument}, men kjører rett før settet (og evt. forside) blir bygd. Brukes: \lstinline{\\AtBeginSet}{setNumber}{SomeAction}. Definert i \lstinline{/logic.tex}
 \end{tabularx}
 Environments:\\
 \begin{tabularx}{\textwidth}{lX}
