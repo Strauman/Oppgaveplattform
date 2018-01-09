@@ -183,7 +183,9 @@
 \let\DisplayDirections = \DisplayDirectionstrue
 \let\HideDirections = \DisplayDirectionsfalse
 \let\DisplayIdeas = \DisplayIdeastrue
-
+\cibetterif{DisplayAnswers}{DisplayAnswers}{HideAnswers}
+\HideAnswers
+%\DisplaySolutions automatically
 \newcommand\IsTeacherCopy[0]{
 	\DisplaySolutions
 	\DisplayDirections
@@ -199,6 +201,15 @@
 		% \paragraph{\SolutionHeader:}$ $\BODY
 		\paragraph{\SolutionHeader:}$ $\BODY
 	\else\fi
+}
+\NewEnviron{answer}{
+	\ifDisplaySolutions
+		\BODY
+	\else
+		\ifDisplayAnswers
+			\paragraph{\tr{AnswerHeader}:}$ $\BODY
+		\fi
+	\fi
 }
 \NewEnviron{direction}{
 	\ifDisplayDirections
