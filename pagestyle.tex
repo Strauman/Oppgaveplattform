@@ -56,7 +56,13 @@
     \IfLanguageName{norsk}{\def\versionText{Diskusjonsforslag}}{}
   \else
     %If (NOT display direction) AND (NOT display solution)
-    \def\versionText{}
+
+    \ifDisplayAnswers
+    % If (NOT display direction) AND (NOT display solution) AND (Display Answers)
+        \def\versionText{\tr{Answers}}
+      \else
+        \def\versionText{}
+    \fi
   \fi
 \fi
 \rhead\versionText
