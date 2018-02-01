@@ -100,7 +100,11 @@ Environments:\\
 	\lstinline{\\courseCode}&Printer det som er gitt i config \lstinline{\\Fagkode}\\
 	\lstinline{\\setNo}&Navnet på nåværende fil (uten \lstinline{.tex})\\
 	\lstinline{\\inputhook}&TODO (og relatert)\\
-	\lstinline{\\AtBeginSet}&Lik \lstinline{\\AtBeginDocument}, men kjører rett før settet (og evt. forside) blir bygd. Brukes: \lstinline{\\AtBeginSet}{setNumber}{SomeAction}. Definert i \lstinline{/logic.tex}
+	\lstinline{\\AtBeginSet}&Lik \lstinline{\\AtBeginDocument}, men kjører rett før settet (og evt. forside) blir bygd. Brukes: \lstinline{\\AtBeginSet}{setNumber}{SomeAction}. Definert i \lstinline{/logic.tex}\\
+	\lstinline{alternatives(Num)}&Environment: \lstinline{alternatives} og \lstinline{alternativesNum} er tilsvarende \lstinline{itemize} og \lstinline{enumerate} henholdsvis. Imidletid støtter de \lstinline{\\alt}, \lstinline{\\answerLabel} og \lstinline{\\answerRef}\\
+	\lstinline{\\alt} & Brukes i stedet for \lstinline{\\item} for videre støtte av \lstinline{\\answerLabel} og \lstinline{\\answerRef}.\\
+	\lstinline{\\answerLabel} & Brukes i \lstinline{alternatives} og \lstinline{alternativesNum} environments, for å merke hvilket alternativ som er riktig. Henvises da senere som \lstinline{\\answerRef}.\\
+	\lstinline{\\answerRef} & Tar ett argument (samme som \lstinline{\\answerLabel}). Gir et tall som tilsvarer posisjonen i \lstinline{\\alternatives} eller \lstinline{\\alternativesNum}
 \end{tabularx}
 Environments:\\
 \begin{tabularx}{\textwidth}{lX}

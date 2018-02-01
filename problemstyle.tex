@@ -1,4 +1,4 @@
-%!TEX root = ../main.tex
+%!TEX root ../main.tex
 \newcommand{\pTitleLeading}{1em}
 \newcommand{\ppLeading}{0.5em}
 \newcommand{\pMargin}{2em}
@@ -28,6 +28,24 @@
 \newcommand\pref[1]{
 	\ref{pr:\setNo:#1}\relax%
 }
+
+%% %% %% %% %% %% %% %% %% %% %% %% %% %% %%
+%%     Alternatives environment           %%
+%% %% %% %% %% %% %% %% %% %% %% %% %% %% %%
+\makeatletter
+\newcounter{AlternativesCounter}
+
+\DeclareRobustCommand{\answerLabel}[1]{
+	\refcounter{\theAlternativesCounter}\label{alt:\setNo:#1}
+}
+\newcommand\answerRef[1]{
+	\ref{alt:\setNo:#1}\relax%
+}
+\def\alt{\stepcounter{AlternativesCounter}\@inmatherr \item \@ifnextchar [\@item {\@noitemargtrue \@item [\@itemlabel ]}}
+% \let\alt=\item
+\newenvironment{alternatives}{\setcounter{AlternativesCounter}{0}\begin{itemize}}{\end{itemize}}
+\newenvironment{alternativesNum}{\setcounter{AlternativesCounter}{0}\begin{enumerate}}{\end{enumerate}}
+\makeatother
 
 
 %% %% %% %% %% %% %% %% %% %% %% %% %% %% %%
