@@ -1,22 +1,37 @@
 %!TEX root = ../main.tex
 \makeatletter
+\newcommand{\@ensureDir}[1]{
+  \immediate\write18{touch #1/.platformDirCheck}
+  \IfFileExists{touch #1/.platformDirCheck}{}{
+    \immediate\write18{mkdir #1}
+  }
+}
 \newcommand{\@executeKnitr}[1]{
-  \immediate\write18{R -e 'library("knitr");knit("\ProblemSetDirectory\knitrInputDir/\setNo/#1.Rnw", "\ProblemSetDirectory\knitrOutputDir/#1knitted.tex")' >> knitlog.log}
+  \@ensureDir{\ProblemSetDirectory\knitrOutputDir}
+  \@ensureDir{\ProblemSetDirectory\knitrOutputDir/\setNo}
+  \immediate\write18{sleep 0.1}
+  \immediate\write18{R -e 'library("knitr");knit("\ProblemSetDirectory\knitrInputDir/\setNo/#1.Rnw", "\ProblemSetDirectory\knitrOutputDir/\setNo/#1knitted.tex")' >> knitlog.log}
 }
 \newcommand{\@includeKnitted}[1]{
-\IfFileExists{\ProblemSetDirectory\knitrOutputDir/#1knitted}{
-    \input{\ProblemSetDirectory\knitrOutputDir/#1knitted.tex}
+\IfFileExists{\ProblemSetDirectory\knitrOutputDir/\setNo/#1knitted}{
+    \input{\ProblemSetDirectory\knitrOutputDir/\setNo/#1knitted.tex}
   }{
     Couldn't find knitted
   }
 }
-
+\newcommand{\knitlogger}[1]{
+  \immediate\write18{echo "#1" >> knitlog.log}
+}
 \newcommand{\includeRnw}[2][\@nil]{
   \def\@optarg{#1}%
   \def\@overrider{f}
+  \def\@halter{h}
   \ifDoKnitr
     \ifExecKnitr
+      \ifx\@optarg\@halter
+      \else
         \@executeKnitr{#2}
+      \fi
       \else
         \ifx\@optarg\@overrider
           \@executeKnitr{#2}
@@ -30,7 +45,7 @@
 \newcommand{\includeSweave}[1]{
   \ifDoKnitr
     \ifExecKnitr
-      \immediate\write18{R -e 'library("knitr");Sweave2knitr("\ProblemSetDirectory\knitrInputDir/\setNo/#1.Rnw")' >> sweave.log}
+      \immediate\write18{R -e 'library("knitr");Sweave2knitr("\ProblemSetDirectory\knitrInputDir/\setNo/\setNo/#1.Rnw")' >> sweave.log}
       \includeRnw{#1-knitr}
     \fi
   \fi
