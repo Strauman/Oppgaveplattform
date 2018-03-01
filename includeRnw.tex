@@ -2,7 +2,7 @@
 \makeatletter
 \newcommand{\@ensureDir}[1]{
   \immediate\write18{touch #1/.platformDirCheck}
-  \IfFileExists{touch #1/.platformDirCheck}{}{
+  \IfFileExists{#1/.platformDirCheck}{}{
     \immediate\write18{mkdir #1}
   }
 }
