@@ -20,7 +20,7 @@ perl -i.bak -pe 's/\{\s+/\{/g' $outfile
 perl -i.bak -pe 's/\s+\}/\}/g' $outfile
 # Add comment to top
 cp $outfile tmpOut
-echo "%% Source and documentation at https://github.com/Strauman/Handin-LaTeX" > $outfile
+echo "%% Source and documentation at https://github.com/Strauman/Oppgaveplattform" > $outfile
 # echo "\makeatletter" >> $outfile
 cat tmpOut >> $outfile
 # echo "\makeatother" >> $outfile
