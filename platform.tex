@@ -2,6 +2,7 @@
 %%%%%% Configure in config.tex %%%%%%%%
 \documentclass{article}
 \input{\platformdir/preamble}
+\inputhook{preamble}
 \IfFileExists{myconfig.tex}{\input{myconfig}}{
   \IfFileExists{config.tex}{
     \input{config}
