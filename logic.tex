@@ -1,8 +1,8 @@
 %!TEX root = ../main.tex
-\def\inputx#1{\IfFileExists{#1.tex}{\input{#1}}{}}
-\def\inputhook#1{\IfFileExists{\hookdir/#1.tex}{\input{\hookdir/#1}}{}}
+\def\inputx#1{\IfFileExists{#1.tex}{\incl{#1}}{}}
+\def\inputhook#1{\IfFileExists{\hookdir/#1.tex}{\incl{\hookdir/#1}}{}}
 \def\hookOverrides#1{
-  \IfFileExists{\hookdir/#1.tex}{\input{\hookdir/#1}}{\input{\platformdir/#1}}
+  \IfFileExists{\hookdir/#1.tex}{\incl{\hookdir/#1}}{\incl{\platformdir/#1}}
 }
 
 

@@ -2,9 +2,9 @@
 \newcommand{\uitTitle}{
   \ifDisplayTitle
     \IfFileExists{\hookdir/titles/\frontpage.tex}{
-      \input{\hookdir/titles/\frontpage}
+      \incl{\hookdir/titles/\frontpage}
     }{
-      \input{\platformdir/titles/\frontpage}
+      \incl{\platformdir/titles/\frontpage}
     }
   \fi
 }

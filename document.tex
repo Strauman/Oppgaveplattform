@@ -7,7 +7,7 @@
 \else
   \makeatletter
     {\Large\contentsname\par}
-    \input{\platformdir/generated.toc}
+    \incl{\platformdir/generated.toc}
   \makeatother
 \fi
   \thispagestyle{empty}
@@ -28,7 +28,7 @@
   %% uitTitle defined in pagestyle
   \uitTitle
   % \triggerQueue{SetsMessage}
-  \input{#1}
+  \incl{#1}
   \clearpage
 }
 \newcommand{\setnotfound}{
@@ -110,5 +110,6 @@
   \bibliographystyle{\bibStyle}
   \bibliography{\bibliographyFile}
 \fi
+% }
 
 \end{document}

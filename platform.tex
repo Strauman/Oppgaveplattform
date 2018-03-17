@@ -1,16 +1,17 @@
 %!TEX root = ../main.tex
 %%%%%% Configure in config.tex %%%%%%%%
 \documentclass{article}
+\let\incl = \input
 \input{\platformdir/preamble}
 \inputhook{preamble}
-\IfFileExists{myconfig.tex}{\input{myconfig}}{
+\IfFileExists{myconfig.tex}{\incl{myconfig}}{
   \IfFileExists{config.tex}{
-    \input{config}
+    \incl{config}
   }{
   \IfFileExists{config-sample.tex}{
-    \input{config-sample}
+    \incl{config-sample}
   }{
-    \input{\platformdir/config-sample}
+    \incl{\platformdir/config-sample}
     }
   }
 }

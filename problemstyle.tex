@@ -128,7 +128,7 @@
 %% Use part problem within inputed file
 \newcommand{\inputProblem}[1]{
 	\bnp
-	\input{#1}
+	\incl{#1}
 	\ep
 }
 
@@ -152,7 +152,7 @@
 			\stepcounter{CyclicProblemIndexCounter}
 			\bcp{\tr{ProblemHeader}\ \theProblemCounter\ -
 				 Cycle \Alph{CyclicProblemIndexCounter}}
-			\input{\path}
+			\incl{\path}
 			\ep
 		}
 	\else
@@ -166,7 +166,7 @@
 					\else
 						\bcp{\tr{ProblemHeader}\ \theProblemCounter}
 					\fi
-					\input{\path}
+					\incl{\path}
 					\ep
 				}{
 					%% EMPTY ELSE STATEMENT

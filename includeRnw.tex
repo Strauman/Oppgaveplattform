@@ -14,7 +14,7 @@
 }
 \newcommand{\@includeKnitted}[1]{
 \IfFileExists{\ProblemSetDirectory\knitrOutputDir/\setNo/#1knitted}{
-    \input{\ProblemSetDirectory\knitrOutputDir/\setNo/#1knitted.tex}
+    \incl{\ProblemSetDirectory\knitrOutputDir/\setNo/#1knitted.tex}
   }{
     Couldn't find knitted
   }
